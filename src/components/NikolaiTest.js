@@ -3,10 +3,11 @@ import { useState } from 'react/cjs/react.development';
 import { useDritIBuksa } from '../util/fetch';
 
 const url = 'https://fakestoreapi.com/products';
-// const url1 = 'https://fakestoreapi.com/products/category/jewelery';
+const url2 = 'https://fakestoreapi.com/products/category/jewelery';
 
 const NikolaiTest = () => {
-  const { data, error, isLoaded } = useDritIBuksa(url);
+  const [myUrl, setMyUrl] = useState(url);
+  const { data, error, isLoaded } = useDritIBuksa(myUrl);
 
   if (error) {
     return <div>Error...</div>;
@@ -16,6 +17,8 @@ const NikolaiTest = () => {
   }
   return (
     <div>
+      <button onClick={() => setMyUrl(url2)}>Jewelery</button>
+      <button onClick={() => setMyUrl(url)}>Clothes</button>
       {data.map((item) => (
         <div key={item.id}>
           <h4>{item.title}</h4>

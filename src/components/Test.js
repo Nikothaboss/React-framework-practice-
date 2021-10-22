@@ -1,37 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useDritIBuksa } from '../util/fetch';
 
-const Test = ({ url }) => {
-  const [myData, setMyData] = useState(url);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
+const url = 'https://fakestoreapi.com/products';
+const url2 = 'https://fakestoreapi.com/products/category/jewelery';
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(myData);
-      const data = await response.json();
-      setMyData(data);
-    } catch {
-      setError(true);
-      console.log('error could not fetch');
-    }
-    setLoading(false);
-  };
+const Test = () => {
+  const [myUrl, setMyUrl] = useState(url);
+  const { data, error, isLoaded } = useDritIBuksa(myUrl);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
   if (error) {
-    return <h1>Error...</h1>;
+    return <div>Error...</div>;
+  }
+  if (isLoaded) {
+    return <div>Loading...</div>;
   }
 
   return (
     <div className='App'>
-      {myData.map((item) => {
+      <button onClick={() => setMyUrl(url2)}>Jewelery</button>
+      <button onClick={() => setMyUrl(url)}>Clothes</button>
+      {data.map((item) => {
         return <h1 key={item.id}>{item.title}</h1>;
       })}
     </div>
