@@ -1,28 +1,26 @@
 import React from 'react';
-import { useState } from 'react/cjs/react.development';
-import { useDritIBuksa } from '../util/fetch';
+import { useState } from 'react';
+import { useFetch } from '../util/fetch';
 
-const url = 'https://fakestoreapi.com/products';
-const url2 = 'https://fakestoreapi.com/products/category/jewelery';
+const url = 'http://localhost:1337/articles';
+
 
 const NikolaiTest = () => {
-  const [myUrl, setMyUrl] = useState(url);
-  const { data, error, isLoaded } = useDritIBuksa(myUrl);
+  
+  const { response, loading, hasError } = useFetch(url);
 
-  if (error) {
+  if (hasError) {
     return <div>Error...</div>;
   }
-  if (isLoaded) {
+  if (loading) {
     return <div>Loading...</div>;
   }
   return (
     <div>
-      <button onClick={() => setMyUrl(url2)}>Jewelery</button>
-      <button onClick={() => setMyUrl(url)}>Clothes</button>
-      {data.map((item) => (
+      {response.map((item) => (
         <div key={item.id}>
           <h4>{item.title}</h4>
-          <img src={item.image} alt='' />
+          {/* <img src={item.image} alt='' /> */}
         </div>
       ))}
     </div>
