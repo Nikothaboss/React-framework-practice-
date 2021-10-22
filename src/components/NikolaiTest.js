@@ -1,13 +1,15 @@
 import React from 'react';
+import { useState } from 'react/cjs/react.development';
 import { useDritIBuksa } from '../util/fetch';
 
 const url = 'https://fakestoreapi.com/products';
+// const url1 = 'https://fakestoreapi.com/products/category/jewelery';
 
 const NikolaiTest = () => {
   const { data, error, isLoaded } = useDritIBuksa(url);
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error...</div>;
   }
   if (isLoaded) {
     return <div>Loading...</div>;

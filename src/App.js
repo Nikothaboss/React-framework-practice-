@@ -4,7 +4,11 @@ import NikolaiTest from './components/NikolaiTest';
 // const url = 'https://fakestoreapi.com/products';
 
 function App() {
-  return <NikolaiTest />;
+  return (
+    <div>
+      <NikolaiTest />
+    </div>
+  );
 }
 
 export default App;
