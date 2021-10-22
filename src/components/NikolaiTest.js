@@ -1,16 +1,27 @@
-import React from 'react'
-import { useFetch } from '../util/fetch'
+import React from 'react';
+import { useDritIBuksa } from '../util/fetch';
 
-const url = "https://fakestoreapi.com/products"
+const url = 'https://fakestoreapi.com/products';
 
 const NikolaiTest = () => {
-    const [response, loading, hasError] = useFetch(url)
-    console.log(response, loading, hasError)
-    return (
-        <div>
-            {loading ? <div>Loading...</div> : (hasError ? <div>Error occured</div> : (response.map(data => <h1>{data.title}</h1>)))}
-        </div>
-    )
-}
+  const { data, error, isLoaded } = useDritIBuksa(url);
 
-export default NikolaiTest
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  if (isLoaded) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div>
+      {data.map((item) => (
+        <div key={item.id}>
+          <h4>{item.title}</h4>
+          <img src={item.image} alt='' />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default NikolaiTest;

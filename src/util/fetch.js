@@ -1,32 +1,25 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react';
 
-export const useFetch = (url, request) => {
-    const [response, setResponse] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [hasError, setHasError] = useState(false);
+export const useDritIBuksa = (url) => {
+  const [data, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [error, setError] = useState(false);
 
-    useEffect(async ()=>{
-        setLoading(true)
-        
-        try{
-            const res = await fetch(url, request)
-            const data = await res.json()
-            console.log(data)
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setData(data);
+      setIsLoaded(false);
+    } catch {
+      setError(true);
+      console.log('ERRORRRRR');
+    }
+  };
 
-            setResponse(data)
-            setLoading(false)
-        }
-        catch{
-            setHasError(true)
-            setLoading(false)
-        }
-        
-    }, [ url ])
+  useEffect(() => {
+    fetchData();
+  }, [url]);
 
-    return [response, loading, hasError]
-}
-
-
-
-
-
+  return { error, isLoaded, data };
+};
