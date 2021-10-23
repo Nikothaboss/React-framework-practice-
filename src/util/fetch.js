@@ -1,32 +1,30 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react';
 
 export const useFetch = (url, request) => {
-    const [response, setResponse] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [hasError, setHasError] = useState(false);
+  const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
-    const myFetch = async () =>{
-        setLoading(true)
-    
-        try{
-            const res = await fetch(url, request)
-            const data = await res.json()
+  const myFetch = async () => {
+    setLoading(true);
 
-            setResponse(data)
-            setLoading(false)
-        }
-        catch{
-            setHasError(true)
-            setLoading(false)
-        } 
+    try {
+      const res = await fetch(url, request);
+      const data = await res.json();
+
+      setResponse(data);
+      setLoading(false);
+    } catch {
+      setHasError(true);
+      setLoading(false);
     }
-    useEffect(()=>{
-        myFetch()
+  };
+  useEffect(() => {
+    myFetch();
+  }, [url]);
 
-    }, [url])
-
-    return {response, loading, hasError}
-}
+  return { response, loading, hasError };
+};
 
 // ***eksempel under er med useCallback siden det fjerner en warning og har sett det bli brukt andre steder****
 // ***husk å legge til: import {useCallback} from 'react';***
