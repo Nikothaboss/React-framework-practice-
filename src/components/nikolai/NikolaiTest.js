@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState } from 'react';
-import { useFetch } from '../util/fetch';
+import { useFetch } from '../../util/fetch';
+import { Niko } from './nikolaiStyles';
 
 const url = 'http://localhost:1337/articles';
 
@@ -16,14 +16,14 @@ const NikolaiTest = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div>
+    <Niko>
       {response.map((item) => (
         <div key={item.id}>
           <h4>{item.title}</h4>
           {/* <img src={item.image} alt='' /> */}
         </div>
       ))}
-    </div>
+    </Niko>
   );
 };
 
