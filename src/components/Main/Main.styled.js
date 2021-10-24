@@ -6,12 +6,12 @@ export const StyledMain = styled.main`
   .headline {
     /* white-space: nowrap; */
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 42px;
     margin-bottom: 2rem;
   }
   .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     grid-gap: 2rem;
     .card {
       display: grid;

@@ -1,15 +1,11 @@
 import React from 'react';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import {
-  Flex,
   Box,
-  Spacer,
-  Heading,
   HStack,
   Text,
   Grid,
 } from '@chakra-ui/layout';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
-import { Button } from '@chakra-ui/button';
 
 const Header = () => {
   return (

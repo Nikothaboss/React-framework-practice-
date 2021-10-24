@@ -2,7 +2,7 @@ import React from 'react';
 import { useFetch } from '../../util/fetch';
 import { StyledMain } from './Main.styled';
 
-const url = 'https://fakestoreapi.com/products';
+const url = 'https://fakestoreapi.com/products?limit=8';
 
 const Main = () => {
   const { response } = useFetch(url);
