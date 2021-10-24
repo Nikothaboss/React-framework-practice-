@@ -1,14 +1,15 @@
-import Header from "./components/Header/Header";
-import ChakraTest from "./components/nikolai/ChakraTest";
-
+import Header from './components/Header/Header';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-  <>
-    <Header />
-    <ChakraTest />
-  </>
-  )
+    <>
+      <Header />
+      <Main />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
