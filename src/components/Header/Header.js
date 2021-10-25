@@ -1,35 +1,76 @@
-import React from 'react';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  HStack,
-  Text,
-  Grid,
-} from '@chakra-ui/layout';
+import React, { useEffect, useState } from 'react';
+import { SunIcon, MoonIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { StyledHeader } from './Header.styled';
+import { Box, HStack, Text, Grid, Flex } from '@chakra-ui/layout';
 
 const Header = () => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const handleSize = () => {
+    setScreenWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleSize);
+    return () => {
+      window.removeEventListener('resize', handleSize);
+    };
+  });
+  return screenWidth > 768 ? <TabletPluss /> : <MobileWidth />;
+};
+
+const MobileWidth = () => {
   return (
-    <Grid
-      templateColumns='repeat(3, 1fr)'
-      bg='#b00b69'
-      pt='5'
-      pb='5'
-      pl='10'
-      pr='10'
-    >
-      <Box>
-        <Text fontSize='24px'>Logo</Text>
-      </Box>
-      <HStack justifyContent='center' fontSize='24px' spacing='24px'>
-        <SunIcon cursor='pointer' />
-        <MoonIcon cursor='pointer' />
-      </HStack>
-      <HStack justifyContent='end' spacing='24px'>
-        <Text>Home</Text>
-        <Text>About</Text>
-        <Text>Projects</Text>
-      </HStack>
-    </Grid>
+    <StyledHeader>
+      <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
+        <Flex>
+          <Text className='logo'>Logo</Text>
+        </Flex>
+        <Flex
+          justifyContent='center'
+          alignItems='center'
+          className='icon-container'
+        >
+          <SunIcon className='sun-icon' />
+          <MoonIcon className='moon-icon' />
+        </Flex>
+        <Flex
+          justifyContent='end'
+          alignItems='center'
+          className='menu-container'
+        >
+          <HamburgerIcon className='menu-item' />
+        </Flex>
+      </Grid>
+    </StyledHeader>
+  );
+};
+
+const TabletPluss = () => {
+  return (
+    <StyledHeader>
+      <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
+        <Flex>
+          <Text className='logo'>Logo</Text>
+        </Flex>
+        <Flex
+          justifyContent='center'
+          alignItems='center'
+          className='icon-container'
+        >
+          <SunIcon className='sun-icon' />
+          <MoonIcon className='moon-icon' />
+        </Flex>
+        <Flex
+          justifyContent='end'
+          alignItems='center'
+          className='menu-container'
+        >
+          <Text className='menu-item'>Home</Text>
+          <Text className='menu-item'>Home</Text>
+          <Text className='menu-item'>Home</Text>
+        </Flex>
+      </Grid>
+    </StyledHeader>
   );
 };
 
