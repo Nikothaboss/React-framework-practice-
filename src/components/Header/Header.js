@@ -6,7 +6,6 @@ import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  
 
   const handleSize = () => {
     setScreenWidth(window.innerWidth);
@@ -18,14 +17,14 @@ const Header = () => {
     };
   });
   // return screenWidth > 768 ? <TabletPluss /> : <MobileWidth />;
-  const {colorMode, toggleColorMode} = useColorMode()
-  const bg = useColorModeValue( "#000", "#fff")
-  const color = useColorModeValue( "#fff", "#000" )
-  console.log(colorMode)
+  const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue('#000', '#fff');
+  const color = useColorModeValue('#fff', '#000');
+  // console.log(colorMode)
   return (
     <Box bg={bg} color={color}>
-      <StyledHeader >
-        <Grid templateColumns='repeat(3, 1fr)' alignContent='center' >
+      <StyledHeader>
+        <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
           <Flex>
             <Text className='logo'>Logo</Text>
           </Flex>
@@ -34,16 +33,18 @@ const Header = () => {
             alignItems='center'
             className='icon-container'
           >
-            {colorMode == "light" ? <MoonIcon className='moon-icon' onClick={toggleColorMode} /> : <SunIcon className='sun-icon' onClick={toggleColorMode}/>}
+            {colorMode == 'light' ? (
+              <MoonIcon className='moon-icon' onClick={toggleColorMode} />
+            ) : (
+              <SunIcon className='sun-icon' onClick={toggleColorMode} />
+            )}
           </Flex>
           <Flex
             justifyContent='end'
             alignItems='center'
             className='menu-container'
           >
-            <Text className='menu-item'>Home</Text>
-            <Text className='menu-item'>Home</Text>
-            <Text className='menu-item'>Home</Text>
+            {screenWidth > 768 ? <TabletPluss /> : <MobileWidth />}
           </Flex>
         </Grid>
       </StyledHeader>
@@ -52,67 +53,16 @@ const Header = () => {
 };
 
 const MobileWidth = () => {
-
-  
-
-  return (
-    <StyledHeader>
-      <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
-        <Flex>
-          <Text className='logo'>Logo</Text>
-        </Flex>
-        <Flex
-          justifyContent='center'
-          alignItems='center'
-          className='icon-container'
-        >
-          <SunIcon className='sun-icon'  />
-          <MoonIcon className='moon-icon' />
-        </Flex>
-        <Flex
-          justifyContent='end'
-          alignItems='center'
-          className='menu-container'
-        >
-          <HamburgerIcon className='menu-item' />
-        </Flex>
-      </Grid>
-    </StyledHeader>
-  );
+  return <HamburgerIcon className='menu-item' />;
 };
 
 const TabletPluss = () => {
-
-  const {colorMode, toggleColorMode} = useColorMode()
-  const bg = useColorModeValue( "#000", "#fff")
-  const color = useColorModeValue( "#fff", "#000" )
-  console.log(colorMode)
   return (
-    <Box bg={bg} color={color}>
-      <StyledHeader >
-        <Grid templateColumns='repeat(3, 1fr)' alignContent='center' >
-          <Flex>
-            <Text className='logo'>Logo</Text>
-          </Flex>
-          <Flex
-            justifyContent='center'
-            alignItems='center'
-            className='icon-container'
-          >
-            {colorMode == "light" ? <MoonIcon className='moon-icon' onClick={toggleColorMode} /> : <SunIcon className='sun-icon' onClick={toggleColorMode}/>}
-          </Flex>
-          <Flex
-            justifyContent='end'
-            alignItems='center'
-            className='menu-container'
-          >
-            <Text className='menu-item'>Home</Text>
-            <Text className='menu-item'>Home</Text>
-            <Text className='menu-item'>Home</Text>
-          </Flex>
-        </Grid>
-      </StyledHeader>
-    </Box>
+    <>
+      <Text className='menu-item'>Home</Text>
+      <Text className='menu-item'>Home</Text>
+      <Text className='menu-item'>Home</Text>
+    </>
   );
 };
 
