@@ -4,6 +4,11 @@ import { colors } from '../../app.styled';
 export const StyledMain = styled.main`
   background: ${colors.white};
   padding: 60px;
+  .when-loading {
+    height: 50vh;
+    display: grid;
+    place-items: center;
+  }
   .headline {
     /* white-space: nowrap; */
     text-align: center;

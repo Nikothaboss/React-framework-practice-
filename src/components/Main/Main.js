@@ -2,11 +2,25 @@ import React from 'react';
 import { useFetch } from '../../util/fetch';
 import Loader from '../../util/Loader';
 import { StyledMain } from './Main.styled';
+import { HStack, VStack } from '@chakra-ui/layout';
 
 const url = 'https://fakestoreapi.com/products?limit=8';
 
 const Main = () => {
   const { response, loading } = useFetch(url);
+
+  if (loading) {
+    return (
+      <StyledMain>
+        <header className='headline'>
+          <h1>
+            This is an example of light and dark mode in <br /> Chakra UI
+          </h1>
+        </header>
+        <div className='when-loading'>{loading && <Loader />}</div>
+      </StyledMain>
+    );
+  }
   return (
     <StyledMain>
       <header className='headline'>
@@ -14,7 +28,7 @@ const Main = () => {
           This is an example of light and dark mode in <br /> Chakra UI
         </h1>
       </header>
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       <article className='cards-container'>
         {response.map((item) => {
           const { id, title, image } = item;

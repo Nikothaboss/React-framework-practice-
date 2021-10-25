@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../app.styled';
 
 export const StyledHeader = styled.header`
   background: #b00b69;
@@ -9,7 +10,7 @@ export const StyledHeader = styled.header`
     cursor: pointer;
     transition: 0.3s linear;
     &:hover {
-      color: var(--clr-1);
+      color: ${colors.white};
     }
   }
   .icon-container {
