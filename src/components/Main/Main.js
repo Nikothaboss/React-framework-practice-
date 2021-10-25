@@ -14,13 +14,12 @@ const Main = () => {
           This is an example of light and dark mode in <br /> Chakra UI
         </h1>
       </header>
-      <Loader />
+      {loading && <Loader />}
       <article className='cards-container'>
-        {loading && <Loader />}
         {response.map((item) => {
-          const { title, image, description } = item;
+          const { id, title, image } = item;
           return (
-            <div className='card'>
+            <div key={id} className='card'>
               <img src={image} alt='' />
               <h3>{title}</h3>
               <p>our desctiption</p>
