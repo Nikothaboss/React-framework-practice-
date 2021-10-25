@@ -18,6 +18,7 @@ const LoadingAnimation = styled.div `
 const Loader = () => {
 
     const loaderVariants = {
+
         animationOne : {
             x: [-20, 20],
             y: [0, -30],
@@ -34,6 +35,12 @@ const Loader = () => {
                 }
             }
         }
+
+
+
+
+
+        
     }
 
     return (

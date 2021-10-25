@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { colors } from '../../app.styled';
 
 export const StyledMain = styled.main`
-  background: lightgrey;
+  background: ${colors.white};
   padding: 60px;
   .headline {
     /* white-space: nowrap; */
