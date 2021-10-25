@@ -11,8 +11,8 @@ const url = 'https://fakestoreapi.com/products?limit=8';
 const Main = () => {
   const { response, loading } = useFetch(url);
   const {colorMode, toggleColorMode} = useColorMode()
-  const bg = useColorModeValue("red.500", "red.200")
-  const color = useColorModeValue("white.200", "gray.800")
+  const color = useColorModeValue("#3d3d3d", "#f2f2f2")
+  const bg = useColorModeValue("white.200", "gray.800")
 
   if (loading) {
     return (
@@ -27,7 +27,7 @@ const Main = () => {
     );
   }
   return (
-    <Box bg={color}>
+    <Box bg={bg}>
       <StyledMain>
         <header className='headline'>
           <h1>
@@ -39,11 +39,11 @@ const Main = () => {
           {response.map((item) => {
             const { id, title, image } = item;
             return (
-              <div key={id} className='card'>
+              <Box key={id} className='card' color={color}>
                 <img src={image} alt='' />
                 <h3>{title}</h3>
                 <p>our desctiption</p>
-              </div>
+              </Box>
             );
           })}
         </article>
