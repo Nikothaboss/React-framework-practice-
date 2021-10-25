@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledMain = styled.main`
   background: lightgrey;
-  padding: 40px;
+  padding: 60px;
   .headline {
     /* white-space: nowrap; */
     text-align: center;
