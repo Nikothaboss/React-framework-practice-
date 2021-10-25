@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { SunIcon, MoonIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { StyledHeader } from './Header.styled';
 import { Box, HStack, Text, Grid, Flex } from '@chakra-ui/layout';
+import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  
 
   const handleSize = () => {
     setScreenWidth(window.innerWidth);
@@ -19,6 +21,9 @@ const Header = () => {
 };
 
 const MobileWidth = () => {
+
+  
+
   return (
     <StyledHeader>
       <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
@@ -30,7 +35,7 @@ const MobileWidth = () => {
           alignItems='center'
           className='icon-container'
         >
-          <SunIcon className='sun-icon' />
+          <SunIcon className='sun-icon'  />
           <MoonIcon className='moon-icon' />
         </Flex>
         <Flex
@@ -46,6 +51,9 @@ const MobileWidth = () => {
 };
 
 const TabletPluss = () => {
+
+  const {colorMode, toggleColorMode} = useColorMode()
+  console.log(colorMode)
   return (
     <StyledHeader>
       <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
@@ -57,8 +65,7 @@ const TabletPluss = () => {
           alignItems='center'
           className='icon-container'
         >
-          <SunIcon className='sun-icon' />
-          <MoonIcon className='moon-icon' />
+          {colorMode == "light" ? <MoonIcon className='moon-icon' onClick={toggleColorMode} /> : <SunIcon className='sun-icon' onClick={toggleColorMode}/>}
         </Flex>
         <Flex
           justifyContent='end'

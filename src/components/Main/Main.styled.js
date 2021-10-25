@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from '../../app.styled';
 
 export const StyledMain = styled.main`
-  background: ${colors.white};
+  background: ${colors.lightGray};
   padding: 60px;
   .when-loading {
     height: 50vh;
