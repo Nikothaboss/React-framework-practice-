@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from '../../app.styled';
 
 export const StyledHeader = styled.header`
-  background: #b00b69;
+  /* background: #b00b69; */
   padding: 20px 50px;
   .logo {
     font-size: 1.5rem;
@@ -19,9 +19,9 @@ export const StyledHeader = styled.header`
       margin: 0 7px;
       cursor: pointer;
       transition: 0.3s linear;
-      &:hover {
+      /* &:hover {
         color: var(--clr-1);
-      }
+      } */
     }
   }
   .menu-container {

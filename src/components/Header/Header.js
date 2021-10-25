@@ -17,7 +17,38 @@ const Header = () => {
       window.removeEventListener('resize', handleSize);
     };
   });
-  return screenWidth > 768 ? <TabletPluss /> : <MobileWidth />;
+  // return screenWidth > 768 ? <TabletPluss /> : <MobileWidth />;
+  const {colorMode, toggleColorMode} = useColorMode()
+  const bg = useColorModeValue( "#000", "#fff")
+  const color = useColorModeValue( "#fff", "#000" )
+  console.log(colorMode)
+  return (
+    <Box bg={bg} color={color}>
+      <StyledHeader >
+        <Grid templateColumns='repeat(3, 1fr)' alignContent='center' >
+          <Flex>
+            <Text className='logo'>Logo</Text>
+          </Flex>
+          <Flex
+            justifyContent='center'
+            alignItems='center'
+            className='icon-container'
+          >
+            {colorMode == "light" ? <MoonIcon className='moon-icon' onClick={toggleColorMode} /> : <SunIcon className='sun-icon' onClick={toggleColorMode}/>}
+          </Flex>
+          <Flex
+            justifyContent='end'
+            alignItems='center'
+            className='menu-container'
+          >
+            <Text className='menu-item'>Home</Text>
+            <Text className='menu-item'>Home</Text>
+            <Text className='menu-item'>Home</Text>
+          </Flex>
+        </Grid>
+      </StyledHeader>
+    </Box>
+  );
 };
 
 const MobileWidth = () => {
@@ -53,31 +84,35 @@ const MobileWidth = () => {
 const TabletPluss = () => {
 
   const {colorMode, toggleColorMode} = useColorMode()
+  const bg = useColorModeValue( "#000", "#fff")
+  const color = useColorModeValue( "#fff", "#000" )
   console.log(colorMode)
   return (
-    <StyledHeader>
-      <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
-        <Flex>
-          <Text className='logo'>Logo</Text>
-        </Flex>
-        <Flex
-          justifyContent='center'
-          alignItems='center'
-          className='icon-container'
-        >
-          {colorMode == "light" ? <MoonIcon className='moon-icon' onClick={toggleColorMode} /> : <SunIcon className='sun-icon' onClick={toggleColorMode}/>}
-        </Flex>
-        <Flex
-          justifyContent='end'
-          alignItems='center'
-          className='menu-container'
-        >
-          <Text className='menu-item'>Home</Text>
-          <Text className='menu-item'>Home</Text>
-          <Text className='menu-item'>Home</Text>
-        </Flex>
-      </Grid>
-    </StyledHeader>
+    <Box bg={bg} color={color}>
+      <StyledHeader >
+        <Grid templateColumns='repeat(3, 1fr)' alignContent='center' >
+          <Flex>
+            <Text className='logo'>Logo</Text>
+          </Flex>
+          <Flex
+            justifyContent='center'
+            alignItems='center'
+            className='icon-container'
+          >
+            {colorMode == "light" ? <MoonIcon className='moon-icon' onClick={toggleColorMode} /> : <SunIcon className='sun-icon' onClick={toggleColorMode}/>}
+          </Flex>
+          <Flex
+            justifyContent='end'
+            alignItems='center'
+            className='menu-container'
+          >
+            <Text className='menu-item'>Home</Text>
+            <Text className='menu-item'>Home</Text>
+            <Text className='menu-item'>Home</Text>
+          </Flex>
+        </Grid>
+      </StyledHeader>
+    </Box>
   );
 };
 
