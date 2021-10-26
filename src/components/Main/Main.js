@@ -45,8 +45,8 @@ const Main = () => {
                 tiltMaxAngleY={20}
                 glareEnable={true}
               >
+                <img src={image} alt='' />
                 <Box key={id} color={color}>
-                  <img src={image} alt='' />
                   <h3>{title}</h3>
                   <p>our desctiption</p>
                 </Box>

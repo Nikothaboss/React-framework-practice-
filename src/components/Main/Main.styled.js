@@ -33,13 +33,18 @@ export const StyledMain = styled.main`
         object-fit: cover;
         margin-bottom: 1rem;
       }
-      h3 {
-        margin-bottom: 1rem;
-        text-align: center;
-        font-weight: 600;
-      }
-      p {
-        margin-bottom: 1rem;
+      div {
+        padding: 0 15px;
+        display: grid;
+        place-items: center;
+        h3 {
+          margin-bottom: 1rem;
+          text-align: center;
+          font-weight: 600;
+        }
+        p {
+          margin-bottom: 1rem;
+        }
       }
     }
   }
