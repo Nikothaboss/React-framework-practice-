@@ -4,15 +4,15 @@ import Loader from '../../util/Loader';
 import { StyledMain } from './Main.styled';
 import { HStack, VStack, Box } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
-
+import Tilt from 'react-parallax-tilt';
 
 const url = 'https://fakestoreapi.com/products?limit=8';
 
 const Main = () => {
   const { response, loading } = useFetch(url);
-  const {colorMode, toggleColorMode} = useColorMode()
-  const color = useColorModeValue("#3d3d3d", "#f2f2f2")
-  const bg = useColorModeValue("white.200", "gray.800")
+  const { colorMode, toggleColorMode } = useColorMode();
+  const color = useColorModeValue('#3d3d3d', '#f2f2f2');
+  const bg = useColorModeValue('white.200', 'gray.800');
 
   if (loading) {
     return (
@@ -39,11 +39,18 @@ const Main = () => {
           {response.map((item) => {
             const { id, title, image } = item;
             return (
-              <Box key={id} className='card' color={color}>
-                <img src={image} alt='' />
-                <h3>{title}</h3>
-                <p>our desctiption</p>
-              </Box>
+              <Tilt
+                className='card'
+                tiltMaxAngleX={20}
+                tiltMaxAngleY={20}
+                glareEnable={true}
+              >
+                <Box key={id} color={color}>
+                  <img src={image} alt='' />
+                  <h3>{title}</h3>
+                  <p>our desctiption</p>
+                </Box>
+              </Tilt>
             );
           })}
         </article>
