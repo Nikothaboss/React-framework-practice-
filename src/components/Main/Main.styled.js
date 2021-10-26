@@ -4,6 +4,10 @@ import { colors } from '../../app.styled';
 export const StyledMain = styled.main`
   /* background: ${colors.lightGray}; */
   padding: 60px;
+
+  .text {
+    color: #3d3d3d;
+  }
   .when-loading {
     height: 50vh;
     display: grid;

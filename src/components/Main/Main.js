@@ -47,8 +47,8 @@ const Main = () => {
               >
                 <img src={image} alt='' />
                 <Box key={id} color={color}>
-                  <h3>{title}</h3>
-                  <p>our desctiption</p>
+                  <h3 class="text">{title}</h3>
+                  <p class="text">our desctiption</p>
                 </Box>
               </Tilt>
             );
