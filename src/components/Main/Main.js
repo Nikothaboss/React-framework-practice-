@@ -5,6 +5,8 @@ import { StyledMain } from './Main.styled';
 import { HStack, VStack, Box } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import Tilt from 'react-parallax-tilt';
+import { motion } from 'framer-motion';
+import { AnimateSharedLayout } from 'framer-motion';
 
 const url = 'https://fakestoreapi.com/products?limit=8';
 
@@ -35,25 +37,32 @@ const Main = () => {
           </h1>
         </header>
         {/* {loading && <Loader />} */}
-        <article className='cards-container'>
+        <motion.article
+          className='cards-container'
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {response.map((item) => {
             const { id, title, image } = item;
             return (
-              <Tilt
-                className='card'
-                tiltMaxAngleX={20}
-                tiltMaxAngleY={20}
-                glareEnable={true}
-              >
-                <img src={image} alt='' />
-                <Box key={id} color={color}>
-                  <h3 class="text">{title}</h3>
-                  <p class="text">our desctiption</p>
-                </Box>
-              </Tilt>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 1 }}>
+                <Tilt
+                  className='card'
+                  tiltMaxAngleX={20}
+                  tiltMaxAngleY={20}
+                  glareEnable={true}
+                >
+                  <img src={image} alt='' />
+                  <Box key={id} color={color}>
+                    <h3 class='text'>{title}</h3>
+                    <p class='text'>our desctiption</p>
+                  </Box>
+                </Tilt>
+              </motion.div>
             );
           })}
-        </article>
+        </motion.article>
       </StyledMain>
     </Box>
   );
