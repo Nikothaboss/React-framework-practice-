@@ -7,6 +7,7 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 
 const CardContainer = styled(motion.div) `
     .card {
+        cursor: pointer;
         position: relative;
         display: grid;
         justify-items: center;
@@ -60,14 +61,14 @@ const CardContainer = styled(motion.div) `
 
 const Card = ({image, id, title}) => {
     const color = useColorModeValue('#3d3d3d', '#f2f2f2');
-    const descriptonColor = useColorModeValue('#3d3d3d', '#f2f2f2');
+    
 
     return (
-        <CardContainer whileHover={{ scale: 1.05 }} whileTap={{ scale: 1 }}>
+        <CardContainer whileHover={{ scale: 1.04 }} whileTap={{ scale: 1 }} transition={{}}>
             <Tilt
             className='card'
-            tiltMaxAngleX={10}
-            tiltMaxAngleY={10}
+            tiltMaxAngleX={3}
+            tiltMaxAngleY={7}
             glareEnable={true}
             >
                 <img src={image} alt='' />

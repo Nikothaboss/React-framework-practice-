@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SunIcon, MoonIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { StyledHeader } from './Header.styled';
-import { Box, HStack, Text, Grid, Flex } from '@chakra-ui/layout';
+import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 
 const Header = () => {
@@ -18,7 +18,7 @@ const Header = () => {
   });
   // return screenWidth > 768 ? <TabletPluss /> : <MobileWidth />;
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue('#000', '#fff');
+  const bg = useColorModeValue('#070707', '#f2f2f2');
   const color = useColorModeValue('#fff', '#000');
   // console.log(colorMode)
   return (
@@ -33,7 +33,7 @@ const Header = () => {
             alignItems='center'
             className='icon-container'
           >
-            {colorMode == 'light' ? (
+            {colorMode === 'light' ? (
               <MoonIcon className='moon-icon' onClick={toggleColorMode} />
             ) : (
               <SunIcon className='sun-icon' onClick={toggleColorMode} />
