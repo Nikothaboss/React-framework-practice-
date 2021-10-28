@@ -7,13 +7,14 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { motion } from 'framer-motion';
 import Card from './card';
 import { colors } from '../../app.styled';
+import TestAnimateSharedLayout from './TestAnimateSharedLayout';
 
 const url = 'https://fakestoreapi.com/products?limit=8';
 
 const Main = () => {
   const { response, loading } = useFetch(url);
-  
-const bg = useColorModeValue( `${colors.gradient}`, 'gray.800');
+
+  const bg = useColorModeValue(`${colors.gradient}`, 'gray.800');
 
   if (loading) {
     return (
@@ -35,7 +36,11 @@ const bg = useColorModeValue( `${colors.gradient}`, 'gray.800');
             This is an example of light and dark mode in <br /> Chakra UI
           </h1>
         </header>
-        {/* {loading && <Loader />} */}
+
+        {/* test */}
+        <TestAnimateSharedLayout />
+        {/* end test */}
+
         <motion.article
           className='cards-container'
           initial={{ opacity: 0, y: 30 }}
@@ -44,9 +49,7 @@ const bg = useColorModeValue( `${colors.gradient}`, 'gray.800');
         >
           {response.map((item) => {
             const { id, title, image } = item;
-            return (
-              <Card id={id} title={title} image={image} />
-            );
+            return <Card id={id} title={title} image={image} />;
           })}
         </motion.article>
       </StyledMain>
