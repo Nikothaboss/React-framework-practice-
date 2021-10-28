@@ -16,7 +16,7 @@ import styled from 'styled-components';
 const TestAnimateSharedLayout = () => {
   return (
     <AnimateSharedLayout>
-      <motion.div layout>
+      <motion.div>
         <Item />
       </motion.div>
     </AnimateSharedLayout>
@@ -26,8 +26,10 @@ const TestAnimateSharedLayout = () => {
 const Item = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <motion.div layout onClick={() => setIsOpen(!isOpen)}>
-      <motion.h2 layout>hello</motion.h2>
+    <motion.div layout onClick={() => setIsOpen(!isOpen)} className='upper'>
+      <motion.div layout>
+        <motion.h2 layout>hello</motion.h2>
+      </motion.div>
       <AnimatePresence>{isOpen && <Content />}</AnimatePresence>
     </motion.div>
   );
@@ -37,11 +39,11 @@ const Content = () => {
   return (
     <>
       <motion.div
+        className='my-card'
         layout
-        // initial={{ height: 0, x: 0 }}
-        transition={{ duration: 1 }}
-        animate={{ height: 100, x: 100 }}
-        //   exit={{ height: 0, x: 50 }}
+        initial={{ x: '100%' }}
+        animate={{ x: 'calc(100vw - 50%)' }}
+        exit={{ width: 0, height: 0 }}
       >
         <h2>Large Item</h2>
         <h2>Large Item</h2>

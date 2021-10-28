@@ -1,3 +1,15 @@
 :root {
   --clr-1: white;
 }
+
+.upper {
+  width: 100%;
+  /* position: relative; */
+}
+
+.my-card {
+  display: grid;
+  place-items: center;
+  background: #fdf;
+  overflow: hidden;
+}
