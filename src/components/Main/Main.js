@@ -2,19 +2,18 @@ import React from 'react';
 import { useFetch } from '../../util/fetch';
 import Loader from '../../util/Loader';
 import { StyledMain } from './Main.styled';
-import { HStack, VStack, Box } from '@chakra-ui/layout';
-import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
-import Tilt from 'react-parallax-tilt';
+import { Box } from '@chakra-ui/layout';
+import { useColorModeValue } from '@chakra-ui/color-mode';
 import { motion } from 'framer-motion';
-import { AnimateSharedLayout } from 'framer-motion';
+import Card from './card';
+import { colors } from '../../app.styled';
 
 const url = 'https://fakestoreapi.com/products?limit=8';
 
 const Main = () => {
   const { response, loading } = useFetch(url);
-  const { colorMode, toggleColorMode } = useColorMode();
-  const color = useColorModeValue('#3d3d3d', '#f2f2f2');
-  const bg = useColorModeValue('white.200', 'gray.800');
+  
+const bg = useColorModeValue( `${colors.gradient}`, 'gray.800');
 
   if (loading) {
     return (
@@ -46,20 +45,7 @@ const Main = () => {
           {response.map((item) => {
             const { id, title, image } = item;
             return (
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 1 }}>
-                <Tilt
-                  className='card'
-                  tiltMaxAngleX={20}
-                  tiltMaxAngleY={20}
-                  glareEnable={true}
-                >
-                  <img src={image} alt='' />
-                  <Box key={id} color={color}>
-                    <h3 class='text'>{title}</h3>
-                    <p class='text'>our desctiption</p>
-                  </Box>
-                </Tilt>
-              </motion.div>
+              <Card id={id} title={title} image={image} />
             );
           })}
         </motion.article>

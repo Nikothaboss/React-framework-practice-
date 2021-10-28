@@ -45,7 +45,10 @@ export const GlobalStyle = createGlobalStyle `
         padding: 0;
         box-sizing: border-box;
         font-size: 18px;
+        font-family: ${fonts.lato};
     }
+
+    
 
 
 `
