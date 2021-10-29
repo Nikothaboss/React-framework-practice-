@@ -9,7 +9,7 @@ import Card from './card';
 import { colors } from '../../app.styled';
 import TestAnimateSharedLayout from './TestAnimateSharedLayout';
 
-const url = 'https://fakestoreapi.com/products?limit=8';
+const url = 'https://fakestoreapi.com/products?perPage=8&offset=8';
 
 const Main = () => {
   const { response, loading } = useFetch(url);

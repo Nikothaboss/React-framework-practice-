@@ -23,9 +23,19 @@ const CardContainer = styled(motion.div) `
             object-fit: cover;
             margin-bottom: 1rem;
         }
+
+        .img-container{
+            height: 350px;
+            width: 100%;
+            padding: 0;
+        }
+
+        .card-description{
+            width: 100%;
+        }
         div {
             font-size: 18px;
-            padding: 0 15px;
+            /* padding: 0 15px; */
             display: grid;
             place-items: center;
             height: 150px;
@@ -46,14 +56,14 @@ const CardContainer = styled(motion.div) `
             }
         }
 
-        &:after{
+        /* &:after{
             content: "";
             position: absolute;
             height: 100%;
             width: 100%;
             background-color: #00000016;
             
-        }
+        } */
 
     }  
 
@@ -62,6 +72,7 @@ const CardContainer = styled(motion.div) `
 
 const Card = ({image, id, title}) => {
     const color = useColorModeValue('#3d3d3d', '#f2f2f2');
+    const text = useColorModeValue('#f2f2f2', '#3d3d3d');
     const [isOpen, setIsOpen] = useState(false)
     const toggleOpen = () => setIsOpen(!isOpen)
     const MotionBox = motion(Box)
@@ -97,18 +108,20 @@ const Card = ({image, id, title}) => {
     }
 
     return (
-        <CardContainer whileHover={{ scale: 1.04 }} whileTap={{ scale: 1 }} transition={{}} onClick={toggleOpen}>
+        <CardContainer whileHover={{ scale: 1.1 }} whileTap={{ scale: 1 }} transition={{}} onClick={toggleOpen}>
             <Tilt
             className='card'
-            tiltMaxAngleX={3}
-            tiltMaxAngleY={7}
+            tiltMaxAngleX={0}
+            tiltMaxAngleY={20}
             glareEnable={true}
             
             >
-                <img src={image} alt='' />
+                <div className="img-container"><img src={image} alt='' /></div>
                 <AnimatePresence>
                     {isOpen && (
                     <MotionBox
+                        className="card-description"
+                        bg={color}
                         key={id}
                         variants={openAnimation}
                         initial={{y: -100, height: 0}}
@@ -116,8 +129,8 @@ const Card = ({image, id, title}) => {
                         exit={"close"}
                     
                         >
-                        <Heading class='text' color={color}>{title}</Heading>
-                        <Text color={color} class='text'>our desctiption</Text>
+                        <Heading color={text}>{title}</Heading>
+                        <Text color={text}>our desctiption</Text>
                     </MotionBox>)}
                 </AnimatePresence>
             </Tilt>
