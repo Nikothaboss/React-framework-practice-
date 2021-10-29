@@ -16,9 +16,11 @@ import styled from 'styled-components';
 
 const TestAnimateSharedLayout = () => {
   return (
-    <motion.div>
-      <Item />
-    </motion.div>
+    <AnimateSharedLayout>
+      <motion.div>
+        <Item />
+      </motion.div>
+    </AnimateSharedLayout>
   );
 };
 

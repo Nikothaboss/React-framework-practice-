@@ -7,7 +7,6 @@ import { useColorModeValue } from '@chakra-ui/color-mode';
 import { motion } from 'framer-motion';
 import Card from './card';
 import { colors } from '../../app.styled';
-import TestAnimateSharedLayout from './TestAnimateSharedLayout';
 
 const url = 'https://fakestoreapi.com/products?perPage=8&offset=8';
 
@@ -37,10 +36,6 @@ const Main = () => {
           </h1>
         </header>
 
-        {/* test */}
-        <TestAnimateSharedLayout />
-        {/* end test */}
-
         <motion.article
           className='cards-container'
           initial={{ opacity: 0, y: 30 }}
@@ -49,7 +44,7 @@ const Main = () => {
         >
           {response.map((item) => {
             const { id, title, image } = item;
-            return <Card id={id} title={title} image={image} />;
+            return <Card key={id} id={id} title={title} image={image} />;
           })}
         </motion.article>
       </StyledMain>
