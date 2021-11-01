@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Heading, Text } from '@chakra-ui/layout';
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CardContainer = styled(motion.div)`
   .card {
@@ -111,9 +111,11 @@ const Card = ({ image, id, title }) => {
       whileTap={{ scale: 1 }}
       transition={{}}
       onClick={toggleOpen}
-    //   onMouseLeave={() => setTimeout(()=>{
-    //       setIsOpen(false)
-    //   }, 3000)}
+      onMouseLeave={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 500);
+      }}
     >
       <Tilt className='card' tiltMaxAngleX={5} tiltMaxAngleY={5}>
         <motion.div className='img-container'>
