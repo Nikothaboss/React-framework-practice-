@@ -32,6 +32,6 @@ export const StyledMain = styled.main`
   .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    grid-gap: 2rem;
+    grid-gap: 4rem;
   }
 `;

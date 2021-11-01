@@ -107,13 +107,15 @@ const Card = ({ image, id, title }) => {
 
   return (
     <CardContainer
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 1 }}
       transition={{}}
       onClick={toggleOpen}
-      onMouseLeave={() => setIsOpen(false)}
+    //   onMouseLeave={() => setTimeout(()=>{
+    //       setIsOpen(false)
+    //   }, 3000)}
     >
-      <Tilt className='card' tiltMaxAngleX={0} tiltMaxAngleY={20}>
+      <Tilt className='card' tiltMaxAngleX={5} tiltMaxAngleY={5}>
         <motion.div className='img-container'>
           <img src={image} alt='' />
         </motion.div>
