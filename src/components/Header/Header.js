@@ -56,73 +56,27 @@ const Header = () => {
 
 const MobileWidth = () => {
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
-      <AnimateSharedLayout>
-        <motion.div
-          layout
-          initial={{ x: 0 }}
-          animate={{ x: -20 }}
-          exit={{ x: 100 }}
-          transition={{ type: 'ease', duration: 0.25 }}
-        >
-          <HamburgerIcon
-            layout
-            className='menu-item'
-            onClick={() => setShowMenu(!showMenu)}
-          />
-        </motion.div>
-        <AnimatePresence>
-          {showMenu && (
-            <>
-              <motion.div
-                layout
-                className='myAnimation'
-                initial={{ x: 0, position: 'absolute' }}
-                animate={{ x: -20, position: 'absolute' }}
-                exit={{ x: 100 }}
-                transition={{ type: 'ease', duration: 0.25 }}
-              >
-                <TabletPluss />
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-      </AnimateSharedLayout>
+      <HamburgerIcon
+        className='menu-item'
+        onClick={() => setShowMenu(!showMenu)}
+      />
+      <AnimatePresence>
+        {showMenu && (
+          <motion.div
+            className='mobile-menu'
+            initial={{ x: 0, height: '100vh' }}
+            animate={{ x: -200, height: '100vh' }}
+            exit={{ x: 200, height: '90vh' }}
+          >
+            <TabletPluss />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
-  // const [showMenu, setShowMenu] = useState(false);
-  // if (!showMenu) {
-  //   return (
-  //     <motion.div animate={{ x: -100 }}>
-  //       <HamburgerIcon
-  //         className='menu-item'
-  //         onClick={() => setShowMenu(!showMenu)}
-  //       />
-  //     </motion.div>
-  //   );
-  // }
-  // return (
-  //   <>
-  //     <AnimateSharedLayout>
-  //       <motion.div initial={{ x: 0 }} animate={{ x: -20 }} exit={{ x: 0 }}>
-  //         <HamburgerIcon
-  //           className='menu-item'
-  //           onClick={() => setShowMenu(!showMenu)}
-  //         />
-  //       </motion.div>
-
-  //       <motion.div
-  //         className='myAnimation'
-  //         initial={{ x: 0, opacity: 0 }}
-  //         animate={{ x: -20, opacity: 1 }}
-  //         exit={{ x: 0, opacity: 0 }}
-  //       >
-  //         <h2>hello</h2>
-  //       </motion.div>
-  //     </AnimateSharedLayout>
-  //   </>
-  // );
 };
 
 const TabletPluss = () => {

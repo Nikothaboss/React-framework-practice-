@@ -4,6 +4,7 @@ import { colors } from '../../app.styled';
 export const StyledHeader = styled.header`
   /* background: #b00b69; */
   padding: 20px 50px;
+  position: relative;
   .logo {
     font-size: 1.5rem;
     font-weight: 600;
@@ -32,6 +33,13 @@ export const StyledHeader = styled.header`
       &:hover {
         color: var(--clr-1);
       }
+    }
+    .mobile-menu {
+      position: absolute;
+      top: 0;
+      background: #b00b69;
+      /* height: 100vh; */
+      width: 10rem;
     }
   }
 `;
