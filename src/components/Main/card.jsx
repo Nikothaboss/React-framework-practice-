@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Heading, Text } from '@chakra-ui/layout';
 import { useColorModeValue } from '@chakra-ui/color-mode';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const CardContainer = styled(motion.div)`
   .card {
@@ -43,7 +43,7 @@ const CardContainer = styled(motion.div)`
       height: 150px;
 
       h2 {
-        z-index: 99;
+        z-index: 9;
         margin-bottom: 1rem;
         /* color: #cf2626; */
         text-align: center;
@@ -52,7 +52,7 @@ const CardContainer = styled(motion.div)`
       }
 
       p {
-        z-index: 99;
+        z-index: 9;
         margin-bottom: 1rem;
         /* color: #f2f2f2; */
       }

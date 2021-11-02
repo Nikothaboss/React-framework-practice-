@@ -20,26 +20,39 @@ export const StyledHeader = styled.header`
       margin: 0 7px;
       cursor: pointer;
       transition: 0.3s linear;
-      /* &:hover {
-        color: var(--clr-1);
-      } */
     }
   }
   .menu-container {
     .menu-item {
       cursor: pointer;
       margin-left: 30px;
-      transition: 0.3s linear;
-      &:hover {
-        color: var(--clr-1);
-      }
+    }
+    .hamburger {
+      z-index: 99;
+    }
+    .backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100%;
+      background: #000;
+      z-index: 9;
     }
     .mobile-menu {
-      position: absolute;
+      position: fixed;
       top: 0;
-      background: #b00b69;
-      /* height: 100vh; */
-      width: 10rem;
+      height: 100vh;
+      width: 40%;
+      z-index: 9;
+      overflow: hidden;
+      .mobile-menu-item {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        padding-left: 1rem;
+      }
     }
   }
 `;

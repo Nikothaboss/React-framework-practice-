@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const useFetch = (url, request) => {
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const myFetch = async () => {
+  const myFetch = useCallback(async () => {
     setLoading(true);
 
     try {
@@ -18,10 +18,11 @@ export const useFetch = (url, request) => {
       setHasError(true);
       setLoading(false);
     }
-  };
+  }, [url, request]);
+
   useEffect(() => {
     myFetch();
-  }, [url]);
+  }, [url, myFetch]);
 
   return { response, loading, hasError };
 };
