@@ -10,8 +10,16 @@ import { colors } from '../../app.styled';
 
 const url = 'https://fakestoreapi.com/products?perPage=8&offset=8';
 
+const pageAnimationVariant = {
+  exit: {
+    x: "-100%",
+    transition: {ease: "easeInOut"}
+  }
+}
+
 const Main = () => {
   const { response, loading } = useFetch(url);
+  const MotionBox = motion(Box);
 
   const bg = useColorModeValue(`${colors.gradient}`, 'gray.800');
 
@@ -28,7 +36,7 @@ const Main = () => {
     );
   }
   return (
-    <Box bg={bg}>
+    <MotionBox bg={bg} variants={pageAnimationVariant} exit="exit">
       <StyledMain>
         <header className='headline'>
           <h1>
@@ -48,7 +56,7 @@ const Main = () => {
           })}
         </motion.article>
       </StyledMain>
-    </Box>
+    </MotionBox>
   );
 };
 

@@ -5,12 +5,15 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { theme } from "./util/theme"
+import {BrowserRouter as Router} from "react-router-dom"
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <App />
+      <Router>
+        <App />
+      </Router>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')

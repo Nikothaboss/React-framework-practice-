@@ -2,26 +2,30 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { AppWrapper, GlobalStyle } from './app.styled';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
+  const location = useLocation()
   return (
     <>
       <GlobalStyle />
       <AppWrapper>
-        <Router>
+        {/* <Router> */}
           <Header />
-          <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route path='/API'>
-              <Main />
-            </Route>
-          </Switch>
+          <AnimatePresence exitBeforeEnter>
+            <Switch location={location} key={location.key}>
+              <Route exact path='/'>
+                <Home />
+              </Route>
+              <Route path='/API'>
+                <Main />
+              </Route>
+            </Switch>
+          </AnimatePresence>
           <Footer />
-        </Router>
+        {/* </Router> */}
       </AppWrapper>
     </>
   );
