@@ -166,55 +166,53 @@ const MobileWidth = () => {
 
   return (
     <>
-      <AnimateSharedLayout>
-        <MotionBox layout className='hamburger' onClick={toggleMenu}>
-          <MotionBox
-            layout
-            bg={bg}
-            variants={hamburgerVariants}
-            animate={showMenu ? 'openLine1' : 'closeLine1'}
-            className='line'
-          ></MotionBox>
-          <MotionBox
-            bg={bg}
-            variants={hamburgerVariants}
-            animate={showMenu ? 'openLine2' : 'closeLine2'}
-            className='line'
-          ></MotionBox>
-          <MotionBox
-            bg={bg}
-            variants={hamburgerVariants}
-            animate={showMenu ? 'openLine3' : 'closeLine3'}
-            className='line'
-          ></MotionBox>
-        </MotionBox>
-        <AnimatePresence>
-          {showMenu && (
-            <>
-              <MotionBox
-                bg={bg}
-                color={color}
-                onClick={toggleMenu}
-                className='backdrop'
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.3 }}
-                exit={{ opacity: 0 }}
-              ></MotionBox>
-              <MotionBox
-                bg={bg}
-                color={color}
-                className='mobile-menu'
-                variants={mobileVariants}
-                initial={{ left: -500 }}
-                animate='visible'
-                exit='hidden'
-              >
-                <MobileMenu toggleMenu={toggleMenu} />
-              </MotionBox>
-            </>
-          )}
-        </AnimatePresence>
-      </AnimateSharedLayout>
+      <MotionBox layout className='hamburger' onClick={toggleMenu}>
+        <MotionBox
+          layout
+          bg={bg}
+          variants={hamburgerVariants}
+          animate={showMenu ? 'openLine1' : 'closeLine1'}
+          className='line'
+        ></MotionBox>
+        <MotionBox
+          bg={bg}
+          variants={hamburgerVariants}
+          animate={showMenu ? 'openLine2' : 'closeLine2'}
+          className='line'
+        ></MotionBox>
+        <MotionBox
+          bg={bg}
+          variants={hamburgerVariants}
+          animate={showMenu ? 'openLine3' : 'closeLine3'}
+          className='line'
+        ></MotionBox>
+      </MotionBox>
+      <AnimatePresence>
+        {showMenu && (
+          <>
+            <MotionBox
+              bg={bg}
+              color={color}
+              onClick={toggleMenu}
+              className='backdrop'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.3 }}
+              exit={{ opacity: 0 }}
+            ></MotionBox>
+            <MotionBox
+              bg={bg}
+              color={color}
+              className='mobile-menu'
+              variants={mobileVariants}
+              initial={{ left: -500 }}
+              animate='visible'
+              exit='hidden'
+            >
+              <MobileMenu toggleMenu={toggleMenu} />
+            </MotionBox>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };
