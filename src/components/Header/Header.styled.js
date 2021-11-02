@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import { colors } from '../../app.styled';
 
 export const StyledHeader = styled.header`
-  /* background: #b00b69; */
   padding: 20px 50px;
-  position: relative;
+  overflow: hidden;
   .logo {
     font-size: 1.5rem;
     font-weight: 600;
@@ -15,6 +14,7 @@ export const StyledHeader = styled.header`
     }
   }
   .icon-container {
+    z-index: 99;
     .sun-icon,
     .moon-icon {
       margin: 0 7px;
@@ -23,12 +23,33 @@ export const StyledHeader = styled.header`
     }
   }
   .menu-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 600px;
     .menu-item {
       cursor: pointer;
-      margin-left: 30px;
+      width: 100%;
+      transition: linear 0.3s;
+      &:hover {
+        opacity: 0.6;
+      }
+      @media (min-width: 900px) {
+        font-size: 0.7rem;
+      }
+      @media (min-width: 1150px) {
+        font-size: 1rem;
+      }
     }
     .hamburger {
       z-index: 99;
+      cursor: pointer;
+      margin-left: auto;
+      .line {
+        height: 2px;
+        width: 20px;
+        margin: 4px 0;
+        border-radius: 10px;
+      }
     }
     .backdrop {
       position: fixed;

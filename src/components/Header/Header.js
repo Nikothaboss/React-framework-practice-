@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SunIcon, MoonIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { StyledHeader } from './Header.styled';
 import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
@@ -23,7 +23,25 @@ const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue(`${colors.darkBlue}`, `${colors.gradient}`);
   const color = useColorModeValue(`${colors.white}`, `${colors.darkBlue}`);
-  // console.log(colorMode)
+
+  const colorModeVariants = {
+    enter: {
+      y: [0, 100, 0],
+      transition: {
+        type: 'linear',
+        duration: 0.6,
+      },
+    },
+    leave: {
+      y: [0, 99, 0],
+      transition: {
+        type: 'linear',
+        duration: 0.6,
+      },
+    },
+  };
+
+  const [sunrise, setSunrise] = useState(false);
   return (
     <Box bg={bg} color={color}>
       <StyledHeader>
@@ -36,21 +54,27 @@ const Header = () => {
             alignItems='center'
             className='icon-container'
           >
-            {colorMode === 'light' ? (
-              <MoonIcon className='moon-icon' onClick={toggleColorMode} />
-            ) : (
-              <SunIcon className='sun-icon' onClick={toggleColorMode} />
-            )}
+            <motion.div
+              onClick={() => setSunrise(!sunrise)}
+              variants={colorModeVariants}
+              animate={sunrise ? 'enter' : 'leave'}
+            >
+              {colorMode === 'light' ? (
+                <MoonIcon className='moon-icon' onClick={toggleColorMode} />
+              ) : (
+                <SunIcon className='sun-icon' onClick={toggleColorMode} />
+              )}
+            </motion.div>
           </Flex>
           <Flex
             justifyContent='end'
             alignItems='center'
             className='menu-container'
           >
-            {screenWidth > 768 ? (
+            {screenWidth > 900 ? (
               <TabletPluss />
             ) : (
-              <MobileWidth bg={bg} color={color} handleSize={handleSize} />
+              <MobileWidth bg={bg} color={color} />
             )}
           </Flex>
         </Grid>
@@ -62,7 +86,7 @@ const Header = () => {
 const MobileWidth = () => {
   const [showMenu, setShowMenu] = useState(false);
   const MotionBox = motion(Box);
-  const bg = useColorModeValue(`${colors.white}`, `${colors.darkGray}`);
+  const bg = useColorModeValue(`${colors.white}`, `${colors.darkBlue}`);
   const color = useColorModeValue(`${colors.black}`, `${colors.white}`);
   const toggleMenu = () => setShowMenu(!showMenu);
 
@@ -85,9 +109,62 @@ const MobileWidth = () => {
     },
   };
 
+  const hamburgerVariants = {
+    closed: {
+      rotate: 0,
+      opacity: 1,
+      transition: {
+        type: 'linear',
+        duration: 0.2,
+      },
+    },
+    openLine1: {
+      rotate: 45,
+      y: 6,
+      transition: {
+        type: 'linear',
+        duration: 0.2,
+      },
+    },
+    openLine2: {
+      opacity: 0,
+      transition: {
+        type: 'linear',
+        duration: 0,
+      },
+    },
+    openLine3: {
+      rotate: -45,
+      y: -6,
+      transition: {
+        type: 'linear',
+        duration: 0.2,
+      },
+    },
+  };
+
   return (
     <>
-      <HamburgerIcon className='menu-item hamburger' onClick={toggleMenu} />
+      <MotionBox className='hamburger' onClick={toggleMenu}>
+        <MotionBox
+          bg={bg}
+          variants={hamburgerVariants}
+          animate={showMenu ? 'openLine1' : 'closed'}
+          className='line'
+        ></MotionBox>
+        <MotionBox
+          bg={bg}
+          variants={hamburgerVariants}
+          animate={showMenu ? 'openLine2' : 'closed'}
+          className='line'
+        ></MotionBox>
+        <MotionBox
+          bg={bg}
+          variants={hamburgerVariants}
+          animate={showMenu ? 'openLine3' : 'closed'}
+          className='line'
+        ></MotionBox>
+      </MotionBox>
       <AnimatePresence>
         {showMenu && (
           <>
