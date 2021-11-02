@@ -4,7 +4,7 @@ import { StyledHeader } from './Header.styled';
 import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 import { colors } from '../../app.styled';
 
 const Header = () => {
@@ -110,12 +110,13 @@ const MobileWidth = () => {
   };
 
   const hamburgerVariants = {
-    closed: {
-      rotate: 0,
+    closeLine1: {
+      rotate: [45, 0],
       opacity: 1,
+      y: [6, 0],
       transition: {
         type: 'linear',
-        duration: 0.2,
+        duration: 0.4,
       },
     },
     openLine1: {
@@ -123,14 +124,34 @@ const MobileWidth = () => {
       y: 6,
       transition: {
         type: 'linear',
-        duration: 0.2,
+        duration: 0.4,
+      },
+    },
+
+    closeLine2: {
+      opacity: [0, 1],
+      y: 0,
+      transition: {
+        type: 'linear',
+        duration: 0.4,
       },
     },
     openLine2: {
       opacity: 0,
+      y: 0,
       transition: {
         type: 'linear',
-        duration: 0,
+        duration: 0.4,
+      },
+    },
+
+    closeLine3: {
+      rotate: [-45, 0],
+      y: [-6, 0],
+      opacity: 1,
+      transition: {
+        type: 'linear',
+        duration: 0.4,
       },
     },
     openLine3: {
@@ -138,59 +159,62 @@ const MobileWidth = () => {
       y: -6,
       transition: {
         type: 'linear',
-        duration: 0.2,
+        duration: 0.4,
       },
     },
   };
 
   return (
     <>
-      <MotionBox className='hamburger' onClick={toggleMenu}>
-        <MotionBox
-          bg={bg}
-          variants={hamburgerVariants}
-          animate={showMenu ? 'openLine1' : 'closed'}
-          className='line'
-        ></MotionBox>
-        <MotionBox
-          bg={bg}
-          variants={hamburgerVariants}
-          animate={showMenu ? 'openLine2' : 'closed'}
-          className='line'
-        ></MotionBox>
-        <MotionBox
-          bg={bg}
-          variants={hamburgerVariants}
-          animate={showMenu ? 'openLine3' : 'closed'}
-          className='line'
-        ></MotionBox>
-      </MotionBox>
-      <AnimatePresence>
-        {showMenu && (
-          <>
-            <MotionBox
-              bg={bg}
-              color={color}
-              onClick={toggleMenu}
-              className='backdrop'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.3 }}
-              exit={{ opacity: 0 }}
-            ></MotionBox>
-            <MotionBox
-              bg={bg}
-              color={color}
-              className='mobile-menu'
-              variants={mobileVariants}
-              initial={{ left: -500 }}
-              animate='visible'
-              exit='hidden'
-            >
-              <MobileMenu toggleMenu={toggleMenu} />
-            </MotionBox>
-          </>
-        )}
-      </AnimatePresence>
+      <AnimateSharedLayout>
+        <MotionBox layout className='hamburger' onClick={toggleMenu}>
+          <MotionBox
+            layout
+            bg={bg}
+            variants={hamburgerVariants}
+            animate={showMenu ? 'openLine1' : 'closeLine1'}
+            className='line'
+          ></MotionBox>
+          <MotionBox
+            bg={bg}
+            variants={hamburgerVariants}
+            animate={showMenu ? 'openLine2' : 'closeLine2'}
+            className='line'
+          ></MotionBox>
+          <MotionBox
+            bg={bg}
+            variants={hamburgerVariants}
+            animate={showMenu ? 'openLine3' : 'closeLine3'}
+            className='line'
+          ></MotionBox>
+        </MotionBox>
+        <AnimatePresence>
+          {showMenu && (
+            <>
+              <MotionBox
+                bg={bg}
+                color={color}
+                onClick={toggleMenu}
+                className='backdrop'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.3 }}
+                exit={{ opacity: 0 }}
+              ></MotionBox>
+              <MotionBox
+                bg={bg}
+                color={color}
+                className='mobile-menu'
+                variants={mobileVariants}
+                initial={{ left: -500 }}
+                animate='visible'
+                exit='hidden'
+              >
+                <MobileMenu toggleMenu={toggleMenu} />
+              </MotionBox>
+            </>
+          )}
+        </AnimatePresence>
+      </AnimateSharedLayout>
     </>
   );
 };
