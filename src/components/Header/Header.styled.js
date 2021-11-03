@@ -4,6 +4,9 @@ import { colors } from '../../app.styled';
 export const StyledHeader = styled.header`
   padding: 20px 50px;
   overflow: hidden;
+  .active {
+    color: ${colors.pink};
+  }
   .logo {
     font-size: 1.5rem;
     font-weight: 600;

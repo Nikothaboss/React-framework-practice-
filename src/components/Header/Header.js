@@ -3,8 +3,8 @@ import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { StyledHeader } from './Header.styled';
 import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
-import { Link } from 'react-router-dom';
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
+import { Link, NavLink } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { colors } from '../../app.styled';
 
 const Header = () => {
@@ -51,9 +51,11 @@ const Header = () => {
             initial={{ x: -200 }}
             animate={{ x: 0 }}
             exit={{ x: -200 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 40 }}
+            transition={{ type: 'linear', duration: 0.5, delay: 0.4 }}
           >
-            <Text className='logo'>Logo</Text>
+            <Link exact='true' to='/'>
+              <Text className='logo'>Logo</Text>
+            </Link>
           </motion.div>
           <Flex
             justifyContent='center'
@@ -251,7 +253,7 @@ const MobileMenu = ({ toggleMenu }) => {
 
   return (
     <>
-      <Link to='/' onClick={toggleMenu}>
+      <NavLink exact to='/' onClick={toggleMenu}>
         <MotionText
           variants={linkVariants}
           initial={{ x: -500 }}
@@ -263,8 +265,8 @@ const MobileMenu = ({ toggleMenu }) => {
         >
           Home
         </MotionText>
-      </Link>
-      <Link to='/FramerMotion' onClick={toggleMenu}>
+      </NavLink>
+      <NavLink to='/FramerMotion' onClick={toggleMenu}>
         <MotionText
           variants={linkVariants}
           initial={{ x: -500 }}
@@ -276,8 +278,8 @@ const MobileMenu = ({ toggleMenu }) => {
         >
           Framer Motion
         </MotionText>
-      </Link>
-      <Link to='/ChakraUI' onClick={toggleMenu}>
+      </NavLink>
+      <NavLink to='/ChakraUI' onClick={toggleMenu}>
         <MotionText
           variants={linkVariants}
           initial={{ x: -500 }}
@@ -289,8 +291,8 @@ const MobileMenu = ({ toggleMenu }) => {
         >
           Chakra UI
         </MotionText>
-      </Link>
-      <Link to='/API' onClick={toggleMenu}>
+      </NavLink>
+      <NavLink to='/API' onClick={toggleMenu}>
         <MotionText
           variants={linkVariants}
           initial={{ x: -500 }}
@@ -302,7 +304,7 @@ const MobileMenu = ({ toggleMenu }) => {
         >
           API
         </MotionText>
-      </Link>
+      </NavLink>
     </>
   );
 };
@@ -310,18 +312,18 @@ const MobileMenu = ({ toggleMenu }) => {
 const TabletPluss = () => {
   return (
     <>
-      <Link to='/'>
+      <NavLink exact to='/'>
         <Text className='menu-item'>Home</Text>
-      </Link>
-      <Link to='/FramerMotion'>
+      </NavLink>
+      <NavLink to='/FramerMotion'>
         <Text className='menu-item'>Framer Motion</Text>
-      </Link>
-      <Link to='/ChakraUI'>
+      </NavLink>
+      <NavLink to='/ChakraUI'>
         <Text className='menu-item'>Chakra UI</Text>
-      </Link>
-      <Link to='/API'>
+      </NavLink>
+      <NavLink to='/API'>
         <Text className='menu-item'>API</Text>
-      </Link>
+      </NavLink>
     </>
   );
 };
