@@ -42,13 +42,19 @@ const Header = () => {
   };
 
   const [sunrise, setSunrise] = useState(false);
+
   return (
     <Box bg={bg} color={color}>
       <StyledHeader>
         <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
-          <Flex>
+          <motion.div
+            initial={{ x: -200 }}
+            animate={{ x: 0 }}
+            exit={{ x: -200 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 40 }}
+          >
             <Text className='logo'>Logo</Text>
-          </Flex>
+          </motion.div>
           <Flex
             justifyContent='center'
             alignItems='center'
@@ -83,12 +89,11 @@ const Header = () => {
   );
 };
 
-const MobileWidth = () => {
+const MobileWidth = React.memo(() => {
   const [showMenu, setShowMenu] = useState(false);
   const MotionBox = motion(Box);
   const bg = useColorModeValue(`${colors.white}`, `${colors.darkBlue}`);
   const color = useColorModeValue(`${colors.black}`, `${colors.white}`);
-  const toggleMenu = () => setShowMenu(!showMenu);
 
   const mobileVariants = {
     hidden: {
@@ -164,6 +169,8 @@ const MobileWidth = () => {
     },
   };
 
+  const toggleMenu = () => setShowMenu(!showMenu);
+
   return (
     <>
       <MotionBox layout className='hamburger' onClick={toggleMenu}>
@@ -215,7 +222,7 @@ const MobileWidth = () => {
       </AnimatePresence>
     </>
   );
-};
+});
 
 const MobileMenu = ({ toggleMenu }) => {
   const MotionText = motion(Text);
