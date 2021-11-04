@@ -9,8 +9,8 @@ import { colors } from '../../app.styled';
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const location = useLocation()
-  console.log(location)
+  const location = useLocation();
+  console.log(location);
 
   const handleSize = () => {
     setScreenWidth(window.innerWidth);
@@ -25,6 +25,10 @@ const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue(`${colors.darkBlue}`, `${colors.gradient}`);
   const color = useColorModeValue(`${colors.white}`, `${colors.darkBlue}`);
+  const opositeColor = useColorModeValue(
+    `${colors.darkBlue}`,
+    `${colors.white}`
+  );
 
   const colorModeVariants = {
     enter: {
@@ -46,7 +50,10 @@ const Header = () => {
   const [sunrise, setSunrise] = useState(false);
 
   return (
-    <Box bg={location.pathname === "/" ? 'transparent' : bg} color={color}>
+    <Box
+      bg={location.pathname === '/' ? 'transparent' : bg}
+      color={opositeColor}
+    >
       <StyledHeader>
         <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
           <motion.div

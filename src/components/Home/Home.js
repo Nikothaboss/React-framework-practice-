@@ -7,7 +7,7 @@ import { colors } from '../../app.styled';
 import { StyledHome } from './Home.styled';
 import Particles from 'react-tsparticles';
 
-const Home = () => {
+const Home = React.memo(() => {
   const headlineVariant = {
     initial: {
       opacity: 0,
@@ -74,8 +74,9 @@ const Home = () => {
       },
     },
   };
-  const MotionHeading = motion(Heading)
-  const headingColor = useColorModeValue("#000", "#fff")
+  const MotionHeading = motion(Heading);
+  const MotionBox = motion(Box);
+  const headingColor = useColorModeValue('#000', '#fff');
   return (
     <StyledHome>
       <ParticleComponent className='particles' />
@@ -95,12 +96,13 @@ const Home = () => {
           <MotionHeading color={headingColor}>Johann</MotionHeading>
         </motion.div>
 
-        <motion.div
+        <MotionHeading
+          color={headingColor}
           variants={headlineVariant}
           initial='initialSideline'
           animate='animateSideline'
           className='sideline'
-        ></motion.div>
+        ></MotionHeading>
 
         <motion.div
           variants={headlineVariant}
@@ -120,10 +122,10 @@ const Home = () => {
       </motion.section>
     </StyledHome>
   );
-};
+});
 
 const ParticleComponent = () => {
-  const colorMode = useColorMode()
+  const colorMode = useColorMode();
   const particlesInit = (main) => {
     console.log(main);
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
@@ -139,7 +141,7 @@ const ParticleComponent = () => {
       options={{
         background: {
           color: {
-            value: `${colorMode.colorMode === "light" ? "#f2f2f2" : "#3d3d3d"}`,
+            value: `${colorMode.colorMode === 'light' ? '#f2f2f2' : '#3d3d3d'}`,
           },
         },
         fpsLimit: 30,
@@ -173,10 +175,10 @@ const ParticleComponent = () => {
         },
         particles: {
           color: {
-            value: `${colorMode.colorMode === "light" ? "#3d3d3d" : "#f2f2f2"}`,
+            value: `${colorMode.colorMode === 'light' ? '#3d3d3d' : '#f2f2f2'}`,
           },
           links: {
-            color: `${colorMode.colorMode === "light" ? "#3d3d3d" : "#f2f2f2"}`,
+            color: `${colorMode.colorMode === 'light' ? '#3d3d3d' : '#f2f2f2'}`,
             distance: 150,
             enable: true,
             opacity: 0.5,
