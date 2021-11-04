@@ -3,12 +3,14 @@ import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { StyledHeader } from './Header.styled';
 import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { colors } from '../../app.styled';
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const location = useLocation()
+  console.log(location)
 
   const handleSize = () => {
     setScreenWidth(window.innerWidth);
@@ -44,7 +46,7 @@ const Header = () => {
   const [sunrise, setSunrise] = useState(false);
 
   return (
-    <Box bg={bg} color={color}>
+    <Box bg={location.pathname === "/" ? 'transparent' : bg} color={color}>
       <StyledHeader>
         <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
           <motion.div

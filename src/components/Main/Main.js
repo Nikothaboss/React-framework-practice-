@@ -1,19 +1,20 @@
 import React from 'react';
-import { useFetch } from '../../util/fetch';
+import Card from './card';
 import Loader from '../../util/Loader';
-import { StyledMain } from './Main.styled';
+import { useFetch } from '../../util/fetch';
 import { Box } from '@chakra-ui/layout';
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { motion } from 'framer-motion';
-import Card from './card';
 import { colors } from '../../app.styled';
+import { StyledMain } from './Main.styled';
 
 const url = 'https://fakestoreapi.com/products?perPage=8&offset=8';
 
 const pageAnimationVariant = {
   exit: {
     x: "-100%",
-    transition: {ease: "easeInOut"}
+    opacity: 0,
+    transition: {ease: "easeInOut", opacity: {duration: .4}, duration: 1}
   }
 }
 

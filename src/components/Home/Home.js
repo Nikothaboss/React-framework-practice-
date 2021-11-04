@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
+import { Box, Text, Grid, Flex, Heading } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import { Link, NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -74,6 +74,8 @@ const Home = () => {
       },
     },
   };
+  const MotionHeading = motion(Heading)
+  const headingColor = useColorModeValue("#000", "#fff")
   return (
     <StyledHome>
       <ParticleComponent className='particles' />
@@ -90,7 +92,7 @@ const Home = () => {
           animate='animate'
           className='hero-text'
         >
-          <motion.h2>Healine</motion.h2>
+          <MotionHeading color={headingColor}>Johann</MotionHeading>
         </motion.div>
 
         <motion.div
@@ -106,13 +108,14 @@ const Home = () => {
           // animate='animate2'
           className='hero-text-2'
         >
-          <motion.h2
+          <MotionHeading
             variants={headlineVariant}
             initial='initialh2'
             animate='animateh2'
+            color={headingColor}
           >
-            Healine2
-          </motion.h2>
+            Nikolai
+          </MotionHeading>
         </motion.div>
       </motion.section>
     </StyledHome>
@@ -120,6 +123,7 @@ const Home = () => {
 };
 
 const ParticleComponent = () => {
+  const colorMode = useColorMode()
   const particlesInit = (main) => {
     console.log(main);
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
@@ -135,10 +139,10 @@ const ParticleComponent = () => {
       options={{
         background: {
           color: {
-            value: '#000',
+            value: `${colorMode.colorMode === "light" ? "#f2f2f2" : "#3d3d3d"}`,
           },
         },
-        fpsLimit: 100,
+        fpsLimit: 30,
         interactivity: {
           events: {
             onClick: {
@@ -169,10 +173,10 @@ const ParticleComponent = () => {
         },
         particles: {
           color: {
-            value: '#ffffff',
+            value: `${colorMode.colorMode === "light" ? "#3d3d3d" : "#f2f2f2"}`,
           },
           links: {
-            color: '#ffffff',
+            color: `${colorMode.colorMode === "light" ? "#3d3d3d" : "#f2f2f2"}`,
             distance: 150,
             enable: true,
             opacity: 0.5,

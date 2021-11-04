@@ -26,6 +26,7 @@ export const StyledHome = styled.main`
       h2 {
         white-space: nowrap;
         text-align: center;
+        font-size: 1.6rem;
       }
     }
 
@@ -45,6 +46,7 @@ export const StyledHome = styled.main`
       h2 {
         white-space: nowrap;
         text-align: center;
+        font-size: 1.6rem;
       }
     }
   }
