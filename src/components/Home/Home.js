@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
-import { Box, Text, Grid, Flex, Heading } from '@chakra-ui/layout';
-import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
-import { Link, NavLink } from 'react-router-dom';
+import { Box, Flex, Heading } from '@chakra-ui/layout';
+import { useColorMode } from '@chakra-ui/color-mode';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
-import { colors } from '../../app.styled';
 import { StyledHome } from './Home.styled';
 import Particles from 'react-tsparticles';
 
 const Home = React.memo(() => {
   const MotionHeading = motion(Heading);
   const MotionBox = motion(Box);
-  const headingColor = useColorModeValue('#000', '#fff');
+
 
   const barier = useAnimation();
   const headlineOne = useAnimation();

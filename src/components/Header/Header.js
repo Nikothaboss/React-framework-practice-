@@ -6,7 +6,7 @@ import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { colors } from '../../app.styled';
-import { transition } from '@chakra-ui/styled-system';
+
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);

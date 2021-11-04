@@ -2,7 +2,6 @@ import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
-import TestAnimateSharedLayout from './components/Main/TestAnimateSharedLayout';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { AppWrapper, GlobalStyle } from './app.styled';
 import { AnimatePresence } from 'framer-motion';
