@@ -11,6 +11,7 @@ export const StyledHome = styled.main`
   .animation-container {
     height: 80%;
     width: 100%;
+    z-index: 99;
     .headlineOne {
       overflow: hidden;
     }

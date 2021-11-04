@@ -38,12 +38,12 @@ const Home = React.memo(() => {
     });
     await headlineTwo.start({ x: 0, transition: { duration: 0.5 } });
     await barier.start({ rotate: 90 });
-    await barier.start({ height: '40%' });
+    await barier.start({ height: '50%' });
   };
 
   useEffect(() => {
     sequence();
-  }, [barier, headlineOne]);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -64,7 +64,6 @@ const Home = React.memo(() => {
             className='barier'
             initial={{ height: 50, width: 5, x: -200, opacity: 0 }}
             animate={barier}
-            exit={{ x: 1000 }}
           />
 
           <MotionBox initial={{ y: 50 }} className='headlineTwo'>
@@ -89,6 +88,10 @@ const ParticleComponent = () => {
   const particlesLoaded = (container) => {
     console.log(container);
   };
+  useEffect(() => {
+    particlesInit();
+    particlesLoaded();
+  }, []);
   return (
     <Particles
       id='tsparticles'

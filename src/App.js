@@ -18,7 +18,6 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Switch location={location} key={location.key}>
             <Route exact path='/'>
-              {/* <TestAnimateSharedLayout /> */}
               <Home />
             </Route>
             <Route path='/API'>
