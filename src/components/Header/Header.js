@@ -52,7 +52,7 @@ const Header = () => {
   return (
     <Box
       bg={location.pathname === '/' ? 'transparent' : bg}
-      color={opositeColor}
+      color={location.pathname === '/' ? opositeColor : color}
     >
       <StyledHeader>
         <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>

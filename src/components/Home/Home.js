@@ -1,128 +1,84 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Text, Grid, Flex, Heading } from '@chakra-ui/layout';
 import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import { Link, NavLink } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { colors } from '../../app.styled';
 import { StyledHome } from './Home.styled';
 import Particles from 'react-tsparticles';
 
 const Home = React.memo(() => {
-  const headlineVariant = {
-    initial: {
-      opacity: 0,
-      width: 0,
-      x: 0,
-      y: 0,
-    },
-
-    animate: {
-      opacity: 1,
-      width: 100,
-      x: 0,
-      y: 0,
-      transition: {
-        type: 'linear',
-        delay: 1,
-        duration: 1,
-      },
-    },
-
-    initialSideline: {
-      height: 50,
-      width: 5,
-      y: 0,
-    },
-    animateSideline: {
-      height: 120,
-      width: 5,
-      y: 35,
-      // position: 'absolute',
-      transition: {
-        type: 'linear',
-        delay: 2,
-        duration: 1,
-      },
-    },
-
-    initial2: {
-      width: 120,
-      y: 50,
-    },
-    // animate2: {
-    //   opacity: 1,
-    //   y: 50,
-    //   transition: {
-    //     // when: 'beforeChildren',
-    //     type: 'linear',
-    //     delay: 2,
-    //     duration: 1,
-    //   },
-    // },
-
-    initialh2: {
-      opacity: 1,
-      x: -200,
-    },
-    animateh2: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: 'linear',
-        delay: 3,
-        duration: 1,
-      },
-    },
-  };
   const MotionHeading = motion(Heading);
   const MotionBox = motion(Box);
   const headingColor = useColorModeValue('#000', '#fff');
+
+  const barier = useAnimation();
+  const headlineOne = useAnimation();
+  const headlineTwo = useAnimation();
+
+  const sequence = async () => {
+    await headlineOne.start({ x: 200 });
+    await barier.start({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      height: 50,
+      transition: { delay: 2, duration: 0.5 },
+    });
+    await headlineOne.start({
+      x: 0,
+      transition: { duration: 0.5 },
+    });
+    await barier.start({
+      opacity: 1,
+      x: 0,
+      y: 25,
+      height: 100,
+      transition: { delay: 0.2, duration: 0.5 },
+    });
+    await headlineTwo.start({ x: 0, transition: { duration: 0.5 } });
+    await barier.start({ rotate: 90 });
+    await barier.start({ height: '40%' });
+  };
+
+  useEffect(() => {
+    sequence();
+  }, [barier, headlineOne]);
+
   return (
-    <StyledHome>
-      <ParticleComponent className='particles' />
-
-      <motion.section
-        initial={{ y: 0, x: -120 }}
-        animate={{ y: -30, x: -120 }}
-        transition={{ type: 'linear', duration: 1, delay: 2 }}
-        className='animation-container'
-      >
-        <motion.div
-          variants={headlineVariant}
-          initial='initial'
-          animate='animate'
-          className='hero-text'
+    <AnimatePresence>
+      <StyledHome>
+        <ParticleComponent className='particles' />
+        <Flex
+          justifyContent='center'
+          alignItems='center'
+          className='animation-container'
         >
-          <MotionHeading color={headingColor}>Johann</MotionHeading>
-        </motion.div>
+          <MotionBox className='headlineOne'>
+            <MotionHeading initial={{ x: 200 }} animate={headlineOne}>
+              Johann
+            </MotionHeading>
+          </MotionBox>
 
-        <MotionHeading
-          color={headingColor}
-          variants={headlineVariant}
-          initial='initialSideline'
-          animate='animateSideline'
-          className='sideline'
-        ></MotionHeading>
+          <MotionBox
+            className='barier'
+            initial={{ height: 50, width: 5, x: -200, opacity: 0 }}
+            animate={barier}
+            exit={{ x: 1000 }}
+          />
 
-        <motion.div
-          variants={headlineVariant}
-          initial='initial2'
-          // animate='animate2'
-          className='hero-text-2'
-        >
-          <MotionHeading
-            variants={headlineVariant}
-            initial='initialh2'
-            animate='animateh2'
-            color={headingColor}
-          >
-            Nikolai
-          </MotionHeading>
-        </motion.div>
-      </motion.section>
-    </StyledHome>
+          <MotionBox initial={{ y: 50 }} className='headlineTwo'>
+            <MotionHeading initial={{ x: -200 }} animate={headlineTwo}>
+              Nikolai
+            </MotionHeading>
+          </MotionBox>
+        </Flex>
+      </StyledHome>
+    </AnimatePresence>
   );
 });
+
+// !particles
 
 const ParticleComponent = () => {
   const colorMode = useColorMode();
@@ -192,7 +148,7 @@ const ParticleComponent = () => {
             enable: true,
             outMode: 'bounce',
             random: false,
-            speed: 1,
+            speed: 0.7,
             straight: false,
           },
           number: {

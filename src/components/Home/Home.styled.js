@@ -9,45 +9,17 @@ export const StyledHome = styled.main`
     z-index: -1;
   }
   .animation-container {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* width: 100%; */
-
-    .hero-text {
-      color: white;
-      font-size: 1.5rem;
+    height: 80%;
+    width: 100%;
+    .headlineOne {
       overflow: hidden;
-      /* border-right: 5px solid white; */
-      h2 {
-        white-space: nowrap;
-        text-align: center;
-        font-size: 1.6rem;
-      }
     }
-
-    .sideline {
+    .barier {
       background: white;
       /* position: absolute; */
     }
-    .hero-text-2 {
-      /* background: #def; */
-      color: white;
-      font-size: 1.5rem;
+    .headlineTwo {
       overflow: hidden;
-      /* border-left: 5px solid white; */
-      /* transform: translateX(-4.6%); */
-      /* margin-left: 0.5rem; */
-
-      h2 {
-        white-space: nowrap;
-        text-align: center;
-        font-size: 1.6rem;
-      }
     }
   }
 `;
