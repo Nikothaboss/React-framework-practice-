@@ -44,7 +44,7 @@ const Home = React.memo(() => {
 
   return (
     <AnimatePresence>
-      <StyledHome initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <StyledHome initial={{ opacity: 0 }} animate={{ opacity: 1, transition:{duration: 2.5} }}>
         <ParticleComponent className='particles' />
         <Flex
           justifyContent='center'
