@@ -105,6 +105,10 @@ const MobileWidth = React.memo(() => {
   const MotionBox = motion(Box);
   const bg = useColorModeValue(`${colors.white}`, `${colors.darkBlue}`);
   const color = useColorModeValue(`${colors.black}`, `${colors.white}`);
+  const opositeColor = useColorModeValue(
+    `${colors.darkBlue}`,
+    `${colors.white}`
+  );
 
   const mobileVariants = {
     hidden: {
@@ -156,18 +160,18 @@ const MobileWidth = React.memo(() => {
       <MotionBox layout className='hamburger' onClick={toggleMenu}>
         <MotionBox
           layout
-          bg={bg}
+          bg={opositeColor}
           animate={burgerUpperLine}
           className='line'
         ></MotionBox>
 
         <MotionBox
-          bg={bg}
+          bg={opositeColor}
           animate={burgerMiddleLine}
           className='line'
         ></MotionBox>
         <MotionBox
-          bg={bg}
+          bg={opositeColor}
           animate={burgerLowerLine}
           className='line'
         ></MotionBox>
