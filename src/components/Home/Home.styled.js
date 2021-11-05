@@ -18,7 +18,7 @@ export const StyledHome = styled(motion.main)`
       overflow: hidden;
     }
     .barier {
-      background: ${colors.white};
+      background: ${colors.pink};
       box-shadow: ${colors.pink} 0px 5px 10px;
     }
     .headlineTwo {
