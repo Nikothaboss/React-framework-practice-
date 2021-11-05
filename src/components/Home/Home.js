@@ -9,7 +9,6 @@ const Home = React.memo(() => {
   const MotionHeading = motion(Heading);
   const MotionBox = motion(Box);
 
-
   const barier = useAnimation();
   const headlineOne = useAnimation();
   const headlineTwo = useAnimation();
@@ -60,7 +59,12 @@ const Home = React.memo(() => {
 
           <MotionBox
             className='barier'
-            initial={{ height: 50, width: 5, x: -200, opacity: 0 }}
+            initial={{
+              height: 50,
+              width: 5,
+              x: -200,
+              opacity: 0,
+            }}
             animate={barier}
           />
 

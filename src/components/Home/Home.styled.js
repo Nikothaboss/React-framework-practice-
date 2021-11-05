@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../app.styled';
 
 export const StyledHome = styled.main`
   height: 91vh;
@@ -16,8 +17,8 @@ export const StyledHome = styled.main`
       overflow: hidden;
     }
     .barier {
-      background: white;
-      /* position: absolute; */
+      background: ${colors.pink};
+      box-shadow: ${colors.pink} 0px 5px 10px;
     }
     .headlineTwo {
       overflow: hidden;

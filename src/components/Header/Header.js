@@ -7,11 +7,9 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { colors } from '../../app.styled';
 
-
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const location = useLocation();
-  console.log(location);
 
   const handleSize = () => {
     setScreenWidth(window.innerWidth);
