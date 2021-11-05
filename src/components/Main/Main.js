@@ -12,7 +12,6 @@ const url = 'https://fakestoreapi.com/products?perPage=8&offset=8';
 
 const pageAnimationVariant = {
   exit: {
-    x: "-100%",
     opacity: 0,
     transition: {ease: "easeInOut", opacity: {duration: .4}, duration: 1}
   }
