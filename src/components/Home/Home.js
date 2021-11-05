@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { Box, Flex, Heading } from '@chakra-ui/layout';
 import { useColorMode } from '@chakra-ui/color-mode';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
@@ -13,7 +13,7 @@ const Home = React.memo(() => {
   const headlineOne = useAnimation();
   const headlineTwo = useAnimation();
 
-  const sequence = async () => {
+  const sequence = useCallback(async () => {
     await headlineOne.start({ x: 200 });
     await barier.start({
       opacity: 1,
@@ -35,16 +35,16 @@ const Home = React.memo(() => {
     });
     await headlineTwo.start({ x: 0, transition: { duration: 0.5 } });
     await barier.start({ rotate: 90 });
-    await barier.start({ height: '50%' });
-  };
+    await barier.start({ height: 300 });
+  }, [barier, headlineOne, headlineTwo]);
 
   useEffect(() => {
     sequence();
-  }, []);
+  }, [sequence]);
 
   return (
     <AnimatePresence>
-      <StyledHome initial={{opacity: 0}} animate={{opacity: 1}}>
+      <StyledHome initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <ParticleComponent className='particles' />
         <Flex
           justifyContent='center'
