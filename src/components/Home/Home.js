@@ -44,7 +44,7 @@ const Home = React.memo(() => {
 
   return (
     <AnimatePresence>
-      <StyledHome>
+      <StyledHome initial={{opacity: 0}} animate={{opacity: 1}}>
         <ParticleComponent className='particles' />
         <Flex
           justifyContent='center'
@@ -102,7 +102,7 @@ const ParticleComponent = () => {
       options={{
         background: {
           color: {
-            value: `${colorMode.colorMode === 'light' ? '#f2f2f2' : '#3d3d3d'}`,
+            value: `${colorMode.colorMode === 'light' ? '#f2f2f2' : '#1A202C'}`,
           },
         },
         fpsLimit: 30,

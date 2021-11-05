@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { colors } from '../../app.styled';
+import { motion } from "framer-motion"
 
-export const StyledHome = styled.main`
+export const StyledHome = styled(motion.main)`
   height: 91vh;
   position: relative;
   #tsparticles {

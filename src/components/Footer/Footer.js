@@ -4,15 +4,16 @@ import { HStack, Grid, VStack, Text, Box } from '@chakra-ui/layout';
 import { AiFillGithub } from "react-icons/ai"
 import { useColorModeValue } from '@chakra-ui/color-mode';
 import { colors } from '../../app.styled';
+import { useLocation } from 'react-router';
 
 
 const Footer = () => {
-
+  const location = useLocation()
   const color = useColorModeValue("#f2f2f2", "#3d3d3d")
   const bg = useColorModeValue(`${colors.darkGray}`, `${colors.lightGray}`)
 
   return (
-    <Box bg={bg}>
+    <Box bg={location.pathname === "/" ? "transparent" : bg}>
       <StyledFooter>
       
           <VStack>
