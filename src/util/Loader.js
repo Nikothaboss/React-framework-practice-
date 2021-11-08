@@ -15,16 +15,16 @@ const LoadingAnimation = styled.div`
 const Loader = () => {
   const loaderVariants = {
     animationOne: {
-      x: [-20, 20],
-      y: [0, -30],
+      x: [-20, 20, -20],
+      y: [0, -30, 0],
       transition: {
         x: {
           repeat: Infinity,
-          duration: 0.5,
+          duration: 0.6,
         },
         y: {
           repeat: Infinity,
-          duration: 0.25,
+          duration: 0.3,
           ease: 'easeOut',
         },
       },

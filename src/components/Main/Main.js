@@ -13,9 +13,9 @@ const url = 'https://fakestoreapi.com/products?perPage=8&offset=8';
 const pageAnimationVariant = {
   exit: {
     opacity: 0,
-    transition: {ease: "easeInOut", opacity: {duration: .4}, duration: 1}
-  }
-}
+    transition: { ease: 'easeInOut', opacity: { duration: 0.4 }, duration: 1 },
+  },
+};
 
 const Main = () => {
   const { response, loading } = useFetch(url);
@@ -36,7 +36,7 @@ const Main = () => {
     );
   }
   return (
-    <MotionBox bg={bg} variants={pageAnimationVariant} exit="exit">
+    <MotionBox bg={bg} variants={pageAnimationVariant} exit='exit'>
       <StyledMain>
         <header className='headline'>
           <h1>
