@@ -52,9 +52,10 @@ const Header = () => {
     <Box
       bg={location.pathname === '/' ? 'transparent' : bg}
       color={location.pathname === '/' ? opositeColor : color}
+      
     >
       <StyledHeader>
-        <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
+        <Grid templateColumns='repeat(3, 1fr)' alignContent='center' zIndex="999">
           <Link exact='true' to='/'>
             <Text className='logo'>Logo</Text>
           </Link>

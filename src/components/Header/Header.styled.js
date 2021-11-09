@@ -25,6 +25,7 @@ export const StyledHeader = styled.header`
     }
   }
   .menu-container {
+    z-index: 999;
     display: flex;
     justify-content: space-between;
     max-width: 600px;
