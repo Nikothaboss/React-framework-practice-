@@ -55,16 +55,10 @@ const Header = () => {
     >
       <StyledHeader>
         <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
-          <motion.div
-            initial={{ x: -200 }}
-            animate={{ x: 0 }}
-            exit={{ x: -200 }}
-            transition={{ type: 'linear', duration: 0.5, delay: 0.4 }}
-          >
-            <Link exact='true' to='/'>
-              <Text className='logo'>Logo</Text>
-            </Link>
-          </motion.div>
+          <Link exact='true' to='/'>
+            <Text className='logo'>Logo</Text>
+          </Link>
+
           <Flex
             justifyContent='center'
             alignItems='center'
@@ -109,6 +103,7 @@ const MobileWidth = React.memo(() => {
     `${colors.darkBlue}`,
     `${colors.white}`
   );
+  const location = useLocation();
 
   const mobileVariants = {
     hidden: {
@@ -160,18 +155,19 @@ const MobileWidth = React.memo(() => {
       <MotionBox layout className='hamburger' onClick={toggleMenu}>
         <MotionBox
           layout
-          bg={opositeColor}
+          // bg={opositeColor}
+          bg={location.pathname === '/' ? opositeColor : bg}
           animate={burgerUpperLine}
           className='line'
         ></MotionBox>
 
         <MotionBox
-          bg={opositeColor}
+          bg={location.pathname === '/' ? opositeColor : bg}
           animate={burgerMiddleLine}
           className='line'
         ></MotionBox>
         <MotionBox
-          bg={opositeColor}
+          bg={location.pathname === '/' ? opositeColor : bg}
           animate={burgerLowerLine}
           className='line'
         ></MotionBox>

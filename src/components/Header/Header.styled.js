@@ -10,8 +10,8 @@ export const StyledHeader = styled.header`
   .logo {
     font-size: 1.5rem;
     font-weight: 600;
+    width: 4rem;
     cursor: pointer;
-    transition: 0.3s linear;
     &:hover {
       color: ${colors.white};
     }
@@ -22,7 +22,6 @@ export const StyledHeader = styled.header`
     .moon-icon {
       margin: 0 7px;
       cursor: pointer;
-      transition: 0.3s linear;
     }
   }
   .menu-container {
@@ -32,7 +31,6 @@ export const StyledHeader = styled.header`
     .menu-item {
       cursor: pointer;
       width: 100%;
-      transition: linear 0.3s;
       &:hover {
         opacity: 0.6;
       }
