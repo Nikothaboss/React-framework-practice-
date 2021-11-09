@@ -25,4 +25,9 @@ export const StyledHome = styled(motion.main)`
       overflow: hidden;
     }
   }
+  .box-container {
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 `;

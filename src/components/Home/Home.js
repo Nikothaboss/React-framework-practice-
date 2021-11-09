@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback } from 'react';
-import { Box, Flex, Heading } from '@chakra-ui/layout';
+import { Box, Flex, Heading, Grid, Text } from '@chakra-ui/layout';
 import { useColorMode } from '@chakra-ui/color-mode';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { StyledHome } from './Home.styled';
@@ -8,10 +8,37 @@ import Particles from 'react-tsparticles';
 const Home = React.memo(() => {
   const MotionHeading = motion(Heading);
   const MotionBox = motion(Box);
+  const MotionFlex = motion(Flex);
+  const MotionGrid = motion(Grid);
 
   const barier = useAnimation();
   const headlineOne = useAnimation();
   const headlineTwo = useAnimation();
+  const animationContainer = useAnimation();
+
+  const boxVariants = {
+    initial: {
+      opacity: 0,
+    },
+    enter: {
+      opacity: 1,
+      transition: { staggerChildren: 0.5 },
+      beforeChildren: true,
+    },
+  };
+  const boxChildren = {
+    initial: {
+      opacity: 0,
+      x: -200,
+    },
+    enter: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  };
 
   const sequence = useCallback(async () => {
     await headlineOne.start({ x: 200 });
@@ -24,19 +51,23 @@ const Home = React.memo(() => {
     });
     await headlineOne.start({
       x: 0,
-      transition: { duration: 0.5 },
+      transition: { duration: 0.3 },
     });
     await barier.start({
       opacity: 1,
       x: 0,
       y: 25,
       height: 100,
-      transition: { delay: 0.2, duration: 0.5 },
+      transition: { delay: 0, duration: 0.5 },
     });
     await headlineTwo.start({ x: 0, transition: { duration: 0.5 } });
     await barier.start({ rotate: 90 });
     await barier.start({ height: 300 });
-  }, [barier, headlineOne, headlineTwo]);
+    await animationContainer.start({
+      y: -150,
+      transition: { stiffness: 300, damping: 8 },
+    });
+  }, [barier, headlineOne, headlineTwo, animationContainer]);
 
   useEffect(() => {
     sequence();
@@ -44,12 +75,16 @@ const Home = React.memo(() => {
 
   return (
     <AnimatePresence>
-      <StyledHome initial={{ opacity: 0 }} animate={{ opacity: 1, transition:{duration: 2.5} }}>
+      <StyledHome
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 2.5 } }}
+      >
         <ParticleComponent className='particles' />
-        <Flex
+        <MotionFlex
           justifyContent='center'
           alignItems='center'
           className='animation-container'
+          animate={animationContainer}
         >
           <MotionBox className='headlineOne'>
             <MotionHeading initial={{ x: 200 }} animate={headlineOne}>
@@ -73,7 +108,28 @@ const Home = React.memo(() => {
               Nikolai
             </MotionHeading>
           </MotionBox>
-        </Flex>
+        </MotionFlex>
+        {/* boxes */}
+
+        <MotionGrid
+          justifyItems='center'
+          className='box-container'
+          variants={boxVariants}
+          initial='initial'
+          animate='enter'
+        >
+          <MotionBox variants={boxChildren}>
+            <Text>hello1</Text>
+          </MotionBox>
+          <MotionBox variants={boxChildren}>
+            <Text>hello2</Text>
+          </MotionBox>
+          <MotionBox variants={boxChildren}>
+            <Text>hello3</Text>
+          </MotionBox>
+        </MotionGrid>
+
+        {/* end boxes */}
       </StyledHome>
     </AnimatePresence>
   );
