@@ -15,27 +15,34 @@ const Home = React.memo(() => {
   const headlineOne = useAnimation();
   const headlineTwo = useAnimation();
   const animationContainer = useAnimation();
+  const boxControls = useAnimation();
 
-  const boxVariants = {
+  const containerUp = {
+    y: -150,
+    transition: { stiffness: 300, damping: 8 },
+  };
+
+  const parentBoxVar = {
     initial: {
       opacity: 0,
     },
     enter: {
       opacity: 1,
-      transition: { staggerChildren: 0.5 },
-      beforeChildren: true,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.3,
+      },
     },
   };
-  const boxChildren = {
+
+  const childrenBoxVar = {
     initial: {
       opacity: 0,
-      x: -200,
     },
     enter: {
       opacity: 1,
-      x: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
       },
     },
   };
@@ -63,11 +70,9 @@ const Home = React.memo(() => {
     await headlineTwo.start({ x: 0, transition: { duration: 0.5 } });
     await barier.start({ rotate: 90 });
     await barier.start({ height: 300 });
-    await animationContainer.start({
-      y: -150,
-      transition: { stiffness: 300, damping: 8 },
-    });
-  }, [barier, headlineOne, headlineTwo, animationContainer]);
+    await animationContainer.start(containerUp);
+    await boxControls.start('enter');
+  }, [barier, headlineOne, headlineTwo, animationContainer, boxControls]);
 
   useEffect(() => {
     sequence();
@@ -109,22 +114,23 @@ const Home = React.memo(() => {
             </MotionHeading>
           </MotionBox>
         </MotionFlex>
+
         {/* boxes */}
 
         <MotionGrid
           justifyItems='center'
           className='box-container'
-          variants={boxVariants}
+          variants={parentBoxVar}
           initial='initial'
-          animate='enter'
+          animate={boxControls}
         >
-          <MotionBox variants={boxChildren}>
+          <MotionBox variants={childrenBoxVar}>
             <Text>hello1</Text>
           </MotionBox>
-          <MotionBox variants={boxChildren}>
+          <MotionBox variants={childrenBoxVar}>
             <Text>hello2</Text>
           </MotionBox>
-          <MotionBox variants={boxChildren}>
+          <MotionBox variants={childrenBoxVar}>
             <Text>hello3</Text>
           </MotionBox>
         </MotionGrid>
