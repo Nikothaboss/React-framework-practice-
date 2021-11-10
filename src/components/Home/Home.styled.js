@@ -11,11 +11,12 @@ export const StyledHome = styled(motion.main)`
     z-index: -1;
   }
   .animation-container {
-    height: 80%;
+    height: 20rem;
     width: 100%;
     z-index: 99;
     .headlineOne {
       overflow: hidden;
+      margin: 0 5px;
     }
     .barier {
       background: ${colors.pink};
@@ -23,6 +24,7 @@ export const StyledHome = styled(motion.main)`
     }
     .headlineTwo {
       overflow: hidden;
+      margin: 0 5px;
     }
   }
   .box-container {
