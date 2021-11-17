@@ -1,16 +1,22 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { Box, Flex, Heading, Grid, Text } from '@chakra-ui/layout';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useColorMode } from '@chakra-ui/color-mode';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { StyledHome } from './Home.styled';
 import ParticleComponent from './ParticleComponent';
-import { parentBoxVar, childrenBoxVar } from '../../util/animations';
+import {
+  parentBoxVar,
+  childrenBoxVar,
+  stripesVariations,
+} from '../../util/animations';
 
 const Home = React.memo(() => {
   const MotionHeading = motion(Heading);
   const MotionBox = motion(Box);
   const MotionFlex = motion(Flex);
   const MotionGrid = motion(Grid);
+  const MotionChevronIcon = motion(ChevronDownIcon);
 
   const barier = useAnimation();
   const headlineOne = useAnimation();
@@ -47,6 +53,26 @@ const Home = React.memo(() => {
     });
     await boxControls.start('enter');
   }, [barier, headlineOne, headlineTwo, animationContainer, boxControls]);
+
+  // test
+  const stripeControls = useAnimation();
+  const cardControls = useAnimation();
+  const animateStripesSequence = () => {
+    stripeControls.start((i) => ({
+      x: 130,
+      y: -70,
+      transition: { delay: i * 0.1 },
+    }));
+  };
+  const exitStripesSequence = () => {
+    stripeControls.start((i) => ({
+      x: 100,
+      y: -40,
+      transition: { delay: i * 0.1 },
+    }));
+  };
+
+  // test
 
   useEffect(() => {
     sequence();
@@ -99,14 +125,43 @@ const Home = React.memo(() => {
           initial='initial'
           animate={boxControls}
         >
-          <MotionBox variants={childrenBoxVar}>
-            <Text>hello1</Text>
+          <MotionBox
+            className='box'
+            onMouseEnter={animateStripesSequence}
+            onMouseLeave={exitStripesSequence}
+            variants={childrenBoxVar}
+          >
+            <Text>Framer Motion</Text>
+            <Box className='stripes-container'>
+              <MotionBox
+                variants={stripesVariations}
+                custom={2}
+                initial='initial'
+                animate={stripeControls}
+                className='stripes'
+              />
+              <MotionBox
+                variants={stripesVariations}
+                custom={1}
+                initial='initial'
+                animate={stripeControls}
+                className='stripes'
+              />
+              <MotionBox
+                variants={stripesVariations}
+                custom={0}
+                initial='initial'
+                animate={stripeControls}
+                className='stripes'
+              />
+            </Box>
+            <MotionChevronIcon className='chevronIcon' />
           </MotionBox>
-          <MotionBox variants={childrenBoxVar}>
-            <Text>hello2</Text>
+          <MotionBox className='box' variants={childrenBoxVar}>
+            <Text>Chakra UI</Text>
           </MotionBox>
-          <MotionBox variants={childrenBoxVar}>
-            <Text>hello3</Text>
+          <MotionBox className='box' variants={childrenBoxVar}>
+            <Text>API</Text>
           </MotionBox>
         </MotionGrid>
 

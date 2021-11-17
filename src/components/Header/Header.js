@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 import { StyledHeader } from './Header.styled';
 import { Box, Text, Grid, Flex } from '@chakra-ui/layout';
@@ -52,10 +52,13 @@ const Header = () => {
     <Box
       bg={location.pathname === '/' ? 'transparent' : bg}
       color={location.pathname === '/' ? opositeColor : color}
-      
     >
       <StyledHeader>
-        <Grid templateColumns='repeat(3, 1fr)' alignContent='center' zIndex="999">
+        <Grid
+          templateColumns='repeat(3, 1fr)'
+          alignContent='center'
+          zIndex='999'
+        >
           <Link exact='true' to='/'>
             <Text className='logo'>Logo</Text>
           </Link>
@@ -129,7 +132,7 @@ const MobileWidth = React.memo(() => {
   const burgerMiddleLine = useAnimation();
   const burgerLowerLine = useAnimation();
 
-  const burgerSequence = () => {
+  const burgerSequence = useCallback(() => {
     burgerUpperLine.start(
       showMenu
         ? { rotate: [0, 45], y: [0, 6], transition: { duration: 0.4 } }
@@ -145,11 +148,11 @@ const MobileWidth = React.memo(() => {
         ? { rotate: [0, -45], y: [0, -6], transition: { duration: 0.4 } }
         : { rotate: [-45, 0], y: [-6, 0], transition: { duration: 0.4 } }
     );
-  };
+  }, [burgerUpperLine, burgerMiddleLine, burgerLowerLine, showMenu]);
 
   useEffect(() => {
     burgerSequence();
-  }, [showMenu]);
+  }, [burgerSequence]);
 
   return (
     <>
