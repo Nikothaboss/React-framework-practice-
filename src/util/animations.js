@@ -14,7 +14,7 @@ export const parentBoxVar = {
 export const childrenBoxVar = {
   initial: {
     opacity: 0,
-    height: 150,
+    height: 100,
     width: 250,
   },
   enter: {

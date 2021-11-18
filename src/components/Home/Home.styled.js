@@ -38,7 +38,8 @@ export const StyledHome = styled(motion.main)`
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* justify-content: center; */
+      padding: 20px;
       background: rgba(0, 0, 0, 0.3);
       overflow: hidden;
       .stripes-container {
@@ -52,6 +53,13 @@ export const StyledHome = styled(motion.main)`
         bottom: 0;
         height: 40px;
         width: 40px;
+      }
+      .box-content {
+        overflow: hidden;
+        flex-direction: column;
+        justify-content: space-evenly;
+        z-index: 99;
+        opacity: 1;
       }
     }
   }
