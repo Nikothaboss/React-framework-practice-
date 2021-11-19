@@ -26,7 +26,7 @@ const ParticleComponent = () => {
             value: `${colorMode.colorMode === 'light' ? '#f2f2f2' : '#1A202C'}`,
           },
         },
-        fpsLimit: 30,
+        fpsLimit: 40,
         interactivity: {
           events: {
             onClick: {
@@ -74,7 +74,7 @@ const ParticleComponent = () => {
             enable: true,
             outMode: 'bounce',
             random: false,
-            speed: 0.7,
+            speed: 0.4,
             straight: false,
           },
           number: {
