@@ -152,16 +152,16 @@ const Firkant = ({ item }) => {
 
   const animateStripesSequence = () => {
     stripeControls.start((i) => ({
-      x: 130,
+      x: 150,
       y: -70,
-      transition: { delay: i * 0.1 },
+      transition: { delay: i * 0.1, duration: 0.3 },
     }));
   };
   const exitStripesSequence = () => {
     stripeControls.start((i) => ({
-      x: 100,
-      y: -40,
-      transition: { delay: i * 0.1 },
+      x: 130,
+      y: -50,
+      transition: { delay: i * 0.1, duration: 0.3 },
     }));
   };
 
@@ -173,24 +173,18 @@ const Firkant = ({ item }) => {
         className='box'
         onMouseEnter={animateStripesSequence}
         onMouseLeave={exitStripesSequence}
+        whileHover={{ scale: 1.03 }}
         variants={childrenBoxVar}
         onClick={() => setIsOpen(!isOpen)}
-        animate={
-          isOpen
-            ? {
-                height: [100, 400],
-                opacity: [1, 1],
-                transition: { duration: 0.4 },
-              }
-            : {
-                height: [400, 100],
-                opacity: [1, 1],
-                transition: { duration: 0.4 },
-              }
-        }
+        initial='initial'
+        animate={isOpen ? 'open' : 'close'}
       >
         <Text>{title}</Text>
-        <Stripes stripeControls={stripeControls} MotionBox={MotionBox} />
+        <Stripes
+          stripeControls={stripeControls}
+          MotionBox={MotionBox}
+          isOpen={isOpen}
+        />
         <AnimatePresence>{isOpen && <SlideFirkant layout />}</AnimatePresence>
         <MotionChevronIcon
           animate={
@@ -236,28 +230,28 @@ const SlideFirkant = () => {
   );
 };
 
-const Stripes = ({ stripeControls, MotionBox }) => {
+const Stripes = ({ stripeControls, MotionBox, isOpen }) => {
   return (
     <Box className='stripes-container'>
       <MotionBox
         variants={stripesVariations}
         custom={2}
         initial='initial'
-        animate={stripeControls}
+        animate={!isOpen ? stripeControls : 'animate'}
         className='stripes'
       />
       <MotionBox
         variants={stripesVariations}
         custom={1}
         initial='initial'
-        animate={stripeControls}
+        animate={!isOpen ? stripeControls : 'animate'}
         className='stripes'
       />
       <MotionBox
         variants={stripesVariations}
         custom={0}
         initial='initial'
-        animate={stripeControls}
+        animate={!isOpen ? stripeControls : 'animate'}
         className='stripes'
       />
     </Box>

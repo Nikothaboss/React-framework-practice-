@@ -29,8 +29,10 @@ export const StyledHome = styled(motion.main)`
   }
   .box-container {
     grid-gap: 1rem;
+    max-width: 1100px;
+    margin: auto;
     /* media */
-    @media (min-width: 768px) {
+    @media (min-width: 900px) {
       grid-template-columns: repeat(3, 1fr);
     }
     .box {
@@ -42,8 +44,11 @@ export const StyledHome = styled(motion.main)`
       padding: 20px;
       background: rgba(0, 0, 0, 0.3);
       overflow: hidden;
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px 0px;
       .stripes-container {
         position: absolute;
+
         .stripes {
           margin: 12px 0;
         }
