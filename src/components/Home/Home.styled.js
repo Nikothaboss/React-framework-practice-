@@ -13,7 +13,6 @@ export const StyledHome = styled(motion.main)`
   .animation-container {
     height: 20rem;
     width: 100%;
-    z-index: 99;
     .headlineOne {
       overflow: hidden;
       margin: 0 5px;
@@ -46,6 +45,9 @@ export const StyledHome = styled(motion.main)`
       overflow: hidden;
       cursor: pointer;
       box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px 0px;
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px 5px;
+      }
       .stripes-container {
         position: absolute;
 
@@ -64,7 +66,6 @@ export const StyledHome = styled(motion.main)`
         flex-direction: column;
         justify-content: space-evenly;
         z-index: 99;
-        opacity: 1;
       }
     }
   }

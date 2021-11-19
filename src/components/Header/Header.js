@@ -6,6 +6,12 @@ import { useColorMode, useColorModeValue } from '@chakra-ui/color-mode';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { colors } from '../../app.styled';
+import { MenuLinks } from '../../util/links';
+import {
+  linkVariants,
+  colorModeVariants,
+  mobileVariants,
+} from '../../util/animations';
 
 const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -20,7 +26,6 @@ const Header = () => {
       window.removeEventListener('resize', handleSize);
     };
   }, [screenWidth]);
-  // return screenWidth > 768 ? <TabletPluss /> : <MobileWidth />;
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue(`${colors.darkBlue}`, `${colors.gradient}`);
   const color = useColorModeValue(`${colors.white}`, `${colors.darkBlue}`);
@@ -28,23 +33,6 @@ const Header = () => {
     `${colors.darkBlue}`,
     `${colors.white}`
   );
-
-  const colorModeVariants = {
-    enter: {
-      y: [0, 100, 0],
-      transition: {
-        type: 'linear',
-        duration: 0.6,
-      },
-    },
-    leave: {
-      y: [0, 99, 0],
-      transition: {
-        type: 'linear',
-        duration: 0.6,
-      },
-    },
-  };
 
   const [sunrise, setSunrise] = useState(false);
 
@@ -54,13 +42,9 @@ const Header = () => {
       color={location.pathname === '/' ? opositeColor : color}
     >
       <StyledHeader>
-        <Grid
-          templateColumns='repeat(3, 1fr)'
-          alignContent='center'
-          zIndex='999'
-        >
-          <Link exact='true' to='/'>
-            <Text className='logo'>Logo</Text>
+        <Grid templateColumns='repeat(3, 1fr)' alignContent='center'>
+          <Link exact='true' to='/' className='logo'>
+            Logo
           </Link>
 
           <Flex
@@ -108,25 +92,6 @@ const MobileWidth = React.memo(() => {
     `${colors.white}`
   );
   const location = useLocation();
-
-  const mobileVariants = {
-    hidden: {
-      left: -500,
-      transition: {
-        type: 'linear',
-        duration: 0.4,
-        delay: 0.4,
-      },
-    },
-    visible: {
-      left: 0,
-      transition: {
-        type: 'linear',
-        duration: 0.4,
-        delay: 0,
-      },
-    },
-  };
 
   const burgerUpperLine = useAnimation();
   const burgerMiddleLine = useAnimation();
@@ -209,82 +174,26 @@ const MobileWidth = React.memo(() => {
 const MobileMenu = ({ toggleMenu }) => {
   const MotionText = motion(Text);
 
-  const linkVariants = {
-    hidden: {
-      x: -500,
-      opacity: 0,
-    },
-    visible: {
-      x: 0,
-      opacity: 1,
-    },
-    hover: {
-      scale: 1.05,
-      x: 15,
-      color: colors.pink,
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        mass: 0.1,
-        damping: 15,
-      },
-    },
-  };
-
   return (
     <>
-      <NavLink exact to='/' onClick={toggleMenu}>
-        <MotionText
-          variants={linkVariants}
-          initial={{ x: -500 }}
-          animate='visible'
-          exit='hidden'
-          whileHover='hover'
-          transition={{ type: 'linear', delay: 0 }}
-          className='mobile-menu-item'
-        >
-          Home
-        </MotionText>
-      </NavLink>
-      <NavLink to='/FramerMotion' onClick={toggleMenu}>
-        <MotionText
-          variants={linkVariants}
-          initial={{ x: -500 }}
-          animate='visible'
-          exit='hidden'
-          whileHover='hover'
-          transition={{ type: 'linear', delay: 0.1 }}
-          className='mobile-menu-item'
-        >
-          Framer Motion
-        </MotionText>
-      </NavLink>
-      <NavLink to='/ChakraUI' onClick={toggleMenu}>
-        <MotionText
-          variants={linkVariants}
-          initial={{ x: -500 }}
-          animate='visible'
-          exit='hidden'
-          whileHover='hover'
-          transition={{ type: 'linear', delay: 0.2 }}
-          className='mobile-menu-item'
-        >
-          Chakra UI
-        </MotionText>
-      </NavLink>
-      <NavLink to='/API' onClick={toggleMenu}>
-        <MotionText
-          variants={linkVariants}
-          initial={{ x: -500 }}
-          animate='visible'
-          exit='hidden'
-          whileHover='hover'
-          transition={{ type: 'linear', delay: 0.3 }}
-          className='mobile-menu-item'
-        >
-          API
-        </MotionText>
-      </NavLink>
+      {MenuLinks.map((item) => {
+        const { id, pathName, title } = item;
+        return (
+          <NavLink exact to={`/${pathName}`} onClick={toggleMenu}>
+            <MotionText
+              variants={linkVariants}
+              initial='hidden'
+              animate='visible'
+              exit='hidden'
+              custom={id}
+              whileHover='hover'
+              className='mobile-menu-item'
+            >
+              {title}
+            </MotionText>
+          </NavLink>
+        );
+      })}
     </>
   );
 };
@@ -292,18 +201,14 @@ const MobileMenu = ({ toggleMenu }) => {
 const TabletPluss = () => {
   return (
     <>
-      <NavLink exact to='/'>
-        <Text className='menu-item'>Home</Text>
-      </NavLink>
-      <NavLink to='/FramerMotion'>
-        <Text className='menu-item'>Framer Motion</Text>
-      </NavLink>
-      <NavLink to='/ChakraUI'>
-        <Text className='menu-item'>Chakra UI</Text>
-      </NavLink>
-      <NavLink to='/API'>
-        <Text className='menu-item'>API</Text>
-      </NavLink>
+      {MenuLinks.map((item) => {
+        const { pathName, title, id } = item;
+        return (
+          <NavLink key={id} exact to={`/${pathName}`}>
+            <Text className='menu-item'>{title}</Text>
+          </NavLink>
+        );
+      })}
     </>
   );
 };

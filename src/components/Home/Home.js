@@ -1,16 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import {
-  Box,
-  Flex,
-  Heading,
-  Grid,
-  Text,
-  HStack,
-  VStack,
-} from '@chakra-ui/layout';
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Box, Flex, Heading, Grid, Text } from '@chakra-ui/layout';
+import { Button } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { useColorMode } from '@chakra-ui/color-mode';
 import {
   AnimatePresence,
   AnimateSharedLayout,
@@ -63,7 +54,7 @@ const Home = React.memo(() => {
     await barier.start({ rotate: 90 });
     await barier.start({ height: 300 });
     await animationContainer.start({
-      y: -50,
+      y: -28,
       transition: { stiffness: 300, damping: 8 },
     });
     await boxControls.start('enter');
@@ -173,7 +164,6 @@ const Firkant = ({ item }) => {
         className='box'
         onMouseEnter={animateStripesSequence}
         onMouseLeave={exitStripesSequence}
-        whileHover={{ scale: 1.03 }}
         variants={childrenBoxVar}
         onClick={() => setIsOpen(!isOpen)}
         initial='initial'
@@ -201,30 +191,31 @@ const Firkant = ({ item }) => {
   );
 };
 
-const SlideFirkant = ({ pathName }) => {
+const SlideFirkant = ({ pathName, text }) => {
   const MotionFlex = motion(Flex);
+  const MotionText = motion(Text);
+  const MotionButton = motion(Button);
+  const MotionLink = motion(Link);
   return (
     <MotionFlex
+      layout
       initial={{ height: 0, opacity: 1 }}
       animate={{
-        height: '100%',
+        height: 350,
         opacity: 1,
         transition: { duration: 0.4 },
       }}
       exit={{
-        height: 0,
+        height: [350, 0],
         opacity: 1,
         transition: { duration: 0.4 },
       }}
       className='box-content'
     >
-      <Text>
-        This page has been animated with the animation library Framer Motion.
-        click the button below to read more
-      </Text>
-      <Button>
-        <Link to={`/${pathName}`}>Read More</Link>
-      </Button>
+      <MotionText className='description'>{text}</MotionText>
+      <MotionButton>
+        <MotionLink to={`/${pathName}`}>Read More</MotionLink>
+      </MotionButton>
     </MotionFlex>
   );
 };

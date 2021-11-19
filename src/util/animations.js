@@ -1,3 +1,67 @@
+import { colors } from '../app.styled';
+// !header
+
+export const colorModeVariants = {
+  enter: {
+    y: [0, 100, 0],
+    transition: {
+      type: 'linear',
+      duration: 0.6,
+    },
+  },
+  leave: {
+    y: [0, 99, 0],
+    transition: {
+      type: 'linear',
+      duration: 0.6,
+    },
+  },
+};
+
+export const mobileVariants = {
+  hidden: {
+    left: -500,
+    transition: {
+      type: 'linear',
+      duration: 0.4,
+      delay: 0.4,
+    },
+  },
+  visible: {
+    left: 0,
+    transition: {
+      type: 'linear',
+      duration: 0.4,
+      delay: 0,
+    },
+  },
+};
+
+export const linkVariants = {
+  hidden: (i) => ({
+    x: -500,
+    opacity: 0,
+    transition: { delay: i * 0.1, type: 'linear' },
+  }),
+  visible: (i) => ({
+    x: 0,
+    opacity: 1,
+    transition: { delay: i * 0.1, type: 'linear' },
+  }),
+  hover: {
+    scale: 1.05,
+    x: 15,
+    color: colors.pink,
+    transition: {
+      type: 'spring',
+      stiffness: 300,
+      mass: 0.1,
+      damping: 15,
+    },
+  },
+};
+
+// !Home page
 export const parentBoxVar = {
   initial: {
     opacity: 0,
@@ -13,7 +77,7 @@ export const parentBoxVar = {
 
 export const childrenBoxVar = {
   initial: {
-    opacity: 0,
+    opacity: 1,
     height: 100,
     width: 300,
   },
@@ -25,13 +89,10 @@ export const childrenBoxVar = {
   },
   open: {
     height: [100, 400],
-    opacity: [1, 1],
-    scale: 1.03,
     transition: { duration: 0.4 },
   },
   close: {
     height: [400, 100],
-    opacity: [1, 1],
     transition: { duration: 0.4 },
   },
 };
@@ -44,7 +105,6 @@ export const stripesVariations = {
     x: 130,
     y: -50,
     rotate: -45,
-    // transition: { duration: 1 },
   },
   animate: (i) => ({
     x: [150, 130],

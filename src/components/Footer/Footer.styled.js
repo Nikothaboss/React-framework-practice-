@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const StyledFooter = styled.footer`
-    padding: 20px 0;
-    /* background: #f2f2f2; */
+  padding: 20px 0;
+  /* background: #f2f2f2; */
 
-    p{
-        font-size: 20px;
-    }
+  p {
+    font-size: 20px;
+  }
 
-    .github{
-        margin-right: 3px;
-        place-items: center;
-    }
+  .github {
+    display: grid;
+    margin-right: 3px;
+    place-items: center;
+  }
 `;
