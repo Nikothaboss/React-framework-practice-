@@ -185,7 +185,9 @@ const Firkant = ({ item }) => {
           MotionBox={MotionBox}
           isOpen={isOpen}
         />
-        <AnimatePresence>{isOpen && <SlideFirkant layout />}</AnimatePresence>
+        <AnimatePresence>
+          {isOpen && <SlideFirkant {...item} />}
+        </AnimatePresence>
         <MotionChevronIcon
           animate={
             isOpen
@@ -199,11 +201,10 @@ const Firkant = ({ item }) => {
   );
 };
 
-const SlideFirkant = () => {
+const SlideFirkant = ({ pathName }) => {
   const MotionFlex = motion(Flex);
   return (
     <MotionFlex
-      layout
       initial={{ height: 0, opacity: 1 }}
       animate={{
         height: '100%',
@@ -217,14 +218,12 @@ const SlideFirkant = () => {
       }}
       className='box-content'
     >
-      <Text layout>
+      <Text>
         This page has been animated with the animation library Framer Motion.
         click the button below to read more
       </Text>
-      <Button layout>
-        <Link layout to='/FramerMotion'>
-          Read More
-        </Link>
+      <Button>
+        <Link to={`/${pathName}`}>Read More</Link>
       </Button>
     </MotionFlex>
   );
