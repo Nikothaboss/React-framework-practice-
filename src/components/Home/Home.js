@@ -176,10 +176,11 @@ const Firkant = ({ item }) => {
           {isOpen && <SlideFirkant {...item} />}
         </AnimatePresence>
         <MotionChevronIcon
+          initial={{ opacity: 0 }}
           animate={
             isOpen
-              ? { rotate: [0, 180], transition: { duration: 0.4 } }
-              : { rotate: [180, 0], transition: { duration: 0.4 } }
+              ? { rotate: [0, 180], opacity: 1, transition: { duration: 0.4 } }
+              : { rotate: [180, 0], opacity: 1, transition: { duration: 0.4 } }
           }
           className='chevronIcon'
         />
