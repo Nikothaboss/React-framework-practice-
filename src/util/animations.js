@@ -79,7 +79,7 @@ export const childrenBoxVar = {
   initial: {
     opacity: 1,
     height: 100,
-    width: 300,
+    // width: 250,
   },
   enter: {
     opacity: 1,
@@ -102,12 +102,12 @@ export const stripesVariations = {
     background: '#b00b69',
     height: 10,
     width: 100,
-    x: 130,
+    x: 110,
     y: -50,
     rotate: -45,
   },
   animate: (i) => ({
-    x: [150, 130],
+    x: [130, 110],
     y: [-70, -50],
     transition: { delay: i * 0.1, duration: 0.3 },
   }),

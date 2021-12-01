@@ -19,6 +19,13 @@ export const Links = [
     pathName: 'API',
     text: `APIAPIAPIAP IAPIAPIAPIA PIAPIAP IAPI APIAPIAP IAPIAPIAP IAPIAPIAPI APIAPI`,
   },
+  {
+    id: 4,
+    title: 'THREE.js',
+    pathName: 'react-three-fiber',
+    text: `This page has been animated with the animation React THREE Fiber.
+        click the button below to read more`,
+  },
 ];
 
 export const MenuLinks = [
@@ -41,5 +48,10 @@ export const MenuLinks = [
     id: 4,
     title: 'API',
     pathName: 'API',
+  },
+  {
+    id: 5,
+    title: 'THREE.js',
+    pathName: 'react-three-fiber',
   },
 ];

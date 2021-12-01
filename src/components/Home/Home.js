@@ -116,9 +116,6 @@ const Home = React.memo(() => {
 });
 
 const Boxes = ({ boxControls, MotionBox, MotionGrid, MotionFlex }) => {
-  // test
-
-  // test
   return (
     <MotionGrid
       justifyItems='center'
@@ -143,14 +140,14 @@ const Firkant = ({ item }) => {
 
   const animateStripesSequence = () => {
     stripeControls.start((i) => ({
-      x: 150,
+      x: 130,
       y: -70,
       transition: { delay: i * 0.1, duration: 0.3 },
     }));
   };
   const exitStripesSequence = () => {
     stripeControls.start((i) => ({
-      x: 130,
+      x: 110,
       y: -50,
       transition: { delay: i * 0.1, duration: 0.3 },
     }));
@@ -201,7 +198,7 @@ const SlideFirkant = ({ pathName, text }) => {
       layout
       initial={{ height: 0, opacity: 1 }}
       animate={{
-        height: 350,
+        height: [0, 350],
         opacity: 1,
         transition: { duration: 0.4 },
       }}

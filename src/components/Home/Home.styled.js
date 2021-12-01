@@ -30,16 +30,19 @@ export const StyledHome = styled(motion.main)`
     grid-gap: 1rem;
     max-width: 1100px;
     margin: auto;
+    padding: 0 1rem;
     /* media */
-    @media (min-width: 900px) {
-      grid-template-columns: repeat(3, 1fr);
+    @media (min-width: 800px) {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
+
     .box {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
       /* justify-content: center; */
+      width: 90%;
       padding: 20px;
       background: rgba(0, 0, 0, 0.3);
       overflow: hidden;
@@ -47,6 +50,9 @@ export const StyledHome = styled(motion.main)`
       box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px 0px;
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 15px 5px;
+      }
+      @media (min-width: 800px) {
+        width: 100%;
       }
       .stripes-container {
         position: absolute;

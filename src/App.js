@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import FramerMotion from './components/FramerMotion/FramerMotion';
 import ChakraUI from './components/ChakraUI/ChakraUI';
+import THREEJS from './components/THREEJS/Three';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { AppWrapper, GlobalStyle } from './app.styled';
 import { AnimatePresence } from 'framer-motion';
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path='/API'>
               <Main />
+            </Route>
+            <Route path='/react-three-fiber'>
+              <THREEJS />
             </Route>
           </Switch>
         </AnimatePresence>
